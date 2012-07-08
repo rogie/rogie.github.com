@@ -1,0 +1,213 @@
+@import "mixins";
+
+@blue: #00A0D1;
+@red: desaturate(lighten(#FF5C26,5%),5%);
+
+html, body{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+}
+*{
+	-webkit-box-sizing: border-box;
+	-mox-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 500;
+   font-size: 20px;
+   line-height: 1.4;
+   
+}
+h1,h2,h3{
+	padding: 0;
+	margin: 0;
+}
+h1{
+	font-size: 40px;
+}
+ul.chirp{
+	padding: 0;
+	margin: 0;
+	
+	li{
+		position: relative;
+		list-style: none;
+		border-bottom:  2px solid rgba(0,0,0,0.05);
+		padding: 10px 30px 10px 80px;
+		
+		img{
+			position: absolute;
+			left: 30px;
+			top: 10px;
+			margin-right: 10px;
+			width: 40px;
+			height: 40px;
+			.border-radius(5px);
+		}
+		time{
+			color: #aaa;
+			display: block;
+			font-size: 0.50em;
+			font-weight: 600;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+		}
+	}
+}
+
+.chirp-tweets-empty{
+	text-align: center;
+	color: #ccc;
+	position: fixed;
+	padding: 20px;
+	left: 38%;
+	right: 0;
+	top: 0;
+	bottom: 0;	
+	>p{
+		border:  3px dashed rgba(0,0,0,0.2);
+		.border-radius(10px);
+		position: absolute;
+		top: 20px; right:20px; bottom:20px;left:30px;
+		margin: 0;
+		>span{
+			display: block;
+			position: absolute;
+			top:  50%;
+			padding: 0;
+			margin: 0;
+			text-align: center;
+			width: 100%;
+			margin-top: -25px;
+			font-size: 50px;
+			color: rgba(0,0,0,0.2);
+		}
+	}
+}
+
+#chirp-settings{
+	>section{
+		background: @blue;
+		padding: 20px;
+		position: absolute;
+		top: 50%;
+		width: 100%;
+		margin-top: -110px;
+		text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+		h1{
+			+ p{
+				margin-top: -0.15em;
+				color: rgba(255,255,255,0.7);
+			}
+		}
+		form{
+			label{
+				display: block;
+				vertical-align: text-top;
+			}
+			input{
+				width: 8em;
+			}
+			textarea{
+				width: 80%;
+				height: 6em;
+			}
+		}
+		&::after{
+			left: 100%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+			border-left-color: #00A0D1;
+			border-width: 20px;
+			top: 50%;
+			margin-left: -1px;
+			margin-top: -20px;	
+		}
+		
+		.download,
+		.tinker{
+			display: block;
+			border-top: 2px solid rgba(255,255,255,0.2);
+			padding: 20px 0;
+		}
+		.tinker{
+			display: none;
+		}
+		
+		.download{
+			padding-bottom: 0;	
+		}
+	}
+}
+
+
+#chirp-tweets,
+#chirp-settings{
+	float: left;
+	position: absolute;
+	top: 0;
+	z-index: 1;
+}
+#chirp-tweets{
+	text-align: left;
+	left: 38%;
+	right: 0;
+	background: #fff;
+}
+#chirp-settings{
+	padding: 0;
+	text-align: right;
+	position: fixed;
+	right: 62%;
+	left: 0;
+	color: #fff;
+	font-weight: 600;
+	z-index: 2;
+	height: 100%;
+}
+input, textarea{
+	-webkit-border-radius: 5px;
+	padding: 5px;
+	border: 0;
+	font-size: 14px;
+	font-family: inherit;
+	font-weight: 600;
+	
+	&:focus{
+		outline: none;
+		.box-shadow(none);
+	}
+}
+
+
+.btn{
+	padding: 15px;
+	display: inline-block;
+	background: @red;
+	.border-radius(5px);
+	text-decoration: none;
+	color: #fff;
+	.box-shadow(0 1px 0 rgba(0,0,0,0.2));
+}
+
+label{
+	color: rgba(255,255,255,0.7);
+	font-size: 16px;
+}
+#bg{
+	position: fixed;
+	left: -200px;
+	top: -200px;
+	width: 100%;
+	z-index: 0;
+	-webkit-transform: translateZ(0);
+	-webkit-filter: blur(25px); 
+	filter: url(#blur-effect); }
+}

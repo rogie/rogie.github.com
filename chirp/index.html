@@ -1,0 +1,94 @@
+<!doctype html>  
+
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <title>Chirp.js — Tweets on your website, simply.</title>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />	
+		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+		
+		<!--Chirp.js doesn't need jQuery...YAY! -->
+		<script src="https://raw.github.com/rogie/Chirp.js/master/chirp.min.js"></script>
+		<link rel="stylesheet" href="css/chirp.css">
+		<script>
+			function gotTweetsYo(data){
+				if(data){
+					var img = document.getElementById('bg');
+					img.src = data[Math.floor(Math.random()*data.length)].user.profile_image_url;
+				}
+			}
+			
+			var chrp,
+				chrpOptions = {	
+					target:'chirp-tweets',
+					callback: gotTweetsYo
+				}
+			
+			var updateOptions = function(name,value){
+				if( name == "templates.tweet" ){
+					chrpOptions.templates = {tweet:value};
+				}else{
+					if( value.match(/(^true|^false)/) ){
+						chrpOptions[name] = (value == 'true'? true : false);
+					} else {
+						chrpOptions[name] = value;
+					}
+				}
+			}
+			
+			var change = function(){
+				document.getElementById('bg').src = 'waiting';
+				updateOptions(this.name,this.value);
+				chrp = new Chirp(chrpOptions);
+				chrp.show();
+			}			
+			//setup this website
+			$(function(){
+				$('.tinker :input')
+					.on('change',change)
+					.each(function(){
+						updateOptions(this.name, this.value);
+					});
+				chrp = new Chirp(chrpOptions).show();
+			});
+				
+		</script>		
+	</head>
+	<body>
+		<img id="bg">
+		<div id="chirp-settings">
+			<section>
+				<h1>Chirp.js</h1>
+				<p>Tweets on your website. Simply.</p>
+				<div class="tinker">
+					<form>
+						<label>User <input placeholder="A user name" value="rogie" name="user"></label>
+						<label>List <input placeholder="A list name" value="" name="list"></label>
+						<label>Show Retweets? <input placeholder="A list name" value="true" name="retweets"></label>
+						<label>Show Replies? <input placeholder="A list name" value="false" name="replies"></label>
+						<label>Tweets to show <input placeholder="5" value="20" name="max"></label>
+						<label>Template <textarea placeholder="5" name="templates.tweet"><li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<time>{{time_ago}}</time></li></textarea></label>
+					</form>
+				</div>
+				<div class="download">
+					<a href="#LINK" class="btn">Download Chirp.js</a>
+				</div>
+			</section>
+		</div>
+		<div id="chirp-tweets">
+		</div>
+		<div class="chirp-tweets-empty">
+			<p><span>Waiting for tweets, yo.</span></p>
+		</div>
+		<svg id="svg-image-blur">
+		    <filter id="blur-effect">
+		        <feGaussianBlur stdDeviation="20" />
+		    </filter>
+		</svg>	
+	</body>
+</html>
