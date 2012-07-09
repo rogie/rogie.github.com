@@ -21,8 +21,9 @@
 		<script>
 			function gotTweetsYo(data){
 				if(data){
+					var dude = data[Math.floor(Math.random()*data.length)].user;
 					$('#bg').on('load', function(){$(this).removeClass('hide')})
-						.attr('src', data[Math.floor(Math.random()*data.length)].user.profile_image_url);
+						.attr('src', dude.profile_image_url);
 				}
 			}
 			

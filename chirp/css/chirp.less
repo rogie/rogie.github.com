@@ -3,6 +3,7 @@
 @blue: #00A0D1;
 @red: desaturate(lighten(#FF5C26,5%),10%);
 @yeller: lighten(#FFF87F,20%);
+@dark: rgba(0,0,0,0.85);
 
 html, body{
 	margin: 0;
@@ -114,7 +115,7 @@ ul.chirp{
 
 #chirp-settings{
 	>section{
-		background: @blue;
+		background: @dark;
 		padding: 30px;
 		position: absolute;
 		.transition(all .3s ease-in-out);
@@ -177,10 +178,10 @@ ul.chirp{
 			width: 0;
 			position: absolute;
 			pointer-events: none;
-			border-left-color: #00A0D1;
+			border-left-color: @dark;
 			border-width: 20px;
 			top: 50%;
-			margin-left: -1px;
+			margin-left: 0;
 			margin-top: -20px;	
 		}
 		
@@ -193,6 +194,8 @@ ul.chirp{
 			padding: 0;
 			border-width: 0;
 			overflow: hidden;
+			position: relative;
+			z-index:1;
 			.opacity(0);
 			.transition(all .3s ease-in-out);
 		}
@@ -278,15 +281,18 @@ input, textarea, select{
 	padding: 2px 5px;
 	border: 0;
 	font-size: 14px;
+	color: #fff;
 	font-family: inherit;
 	font-weight: 600;
 	-webkit-appearance:none;
-	@s:0 0 0 1px darken(@blue,10%), 0 2px 0 rgba(255,255,255,0.4), inset 0 2px 3px rgba(0,0,0,0.2);
+	background: rgba(255,255,255,0.3);
+	@s:0 0 0 1px darken(@dark,10%), 0 2px 0 rgba(255,255,255,0.2), inset 0 2px 3px rgba(0,0,0,0.2);
 	.box-shadow(@s);
 	
 	&:focus{
 		outline: none;
 		background-color: @yeller;
+		color: @dark;
 	}
 }
 .btn{
