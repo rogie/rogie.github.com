@@ -200,7 +200,6 @@ ul.chirp li time {
 #chirp-settings > section .try-it-out {
   display: block;
   border-top: 2px solid rgba(255, 255, 255, 0.2);
-  padding: 20px 0;
 }
 #chirp-settings > section .try-it-out {
   height: 0;
@@ -223,7 +222,7 @@ ul.chirp li time {
 #chirp-settings.try-it > section .try-it-out {
   display: block;
   height: 230px;
-  padding: 20px 0;
+  padding: 30px 0 0 0;
   filter: alpha(opacity=100);
   -khtml-opacity: 1;
   -moz-opacity: 1;
@@ -237,7 +236,7 @@ ul.chirp li time {
   right: 0;
   height: 161px;
   left: 38%;
-  background: #fa7244;
+  background: #f57449;
   z-index: 2;
   color: #fff;
   font-weight: 600;
@@ -306,7 +305,7 @@ select:focus {
 .btn {
   padding: 10px;
   display: inline-block;
-  background: #fa7244;
+  background: #f57449;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
