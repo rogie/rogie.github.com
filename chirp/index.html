@@ -48,13 +48,14 @@
 				document.getElementById('bg').src = 'waiting';
 				updateOptions(this.name,this.value);
 				$('.username').text(chrpOptions.user);
+				$('#chirp-tweets').removeAttr('class').addClass(chrpOptions.user);
 				$('.list-names').attr('href','http://twitter.com/'+ chrpOptions.user + '/lists');
 				chrp = new Chirp(chrpOptions);
 				chrp.show();
 			}			
 			//setup this website
 			$(function(){
-				$('.tinker :input')
+				$('.try-it-out :input')
 					.on('change',change)
 					.each(function(){
 						updateOptions(this.name, this.value);
@@ -113,11 +114,15 @@
 				</div>
 				<div class="download">
 					<a href="#try" class="btn try">Try it!</a>
-					<a href="#LINK" class="btn">Download Chirp.js</a>
+					<a href="#LINK" class="btn">Download</a>
 				</div>
 			</section>
 		</div>
-		<div id="chirp-tweets">
+		<div id="chirp-tweets" class="rogie">
+		</div>
+		<div id="windbaggery">
+			<img src="mtn_rogie.png">
+			Sweet mother of Abraham Lincoln, these are my tweets! Press the Try it button over yonder to see other more important people's tweets. If you dig this, <a href="http://twitter.com/rogie">foller me on the twitters</a> and <a href="">fill up my gamblin' funds here</a>.
 		</div>
 		<div class="chirp-tweets-empty">
 			<p><span>Waiting for tweets, yo.</span></p>

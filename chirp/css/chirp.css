@@ -127,17 +127,16 @@ ul.chirp li time {
 }
 #chirp-settings > section {
   background: #00a0d1;
-  padding: 20px;
+  padding: 30px;
   position: absolute;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  top: 50%;
+  top: 0;
   right: 0;
   width: 100%;
-  margin-top: -110px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 #chirp-settings > section h1 + p {
@@ -178,6 +177,11 @@ ul.chirp li time {
 }
 #chirp-settings > section .download {
   text-align: center;
+  position: absolute;
+  right: 30px;
+  top: 60px;
+  bottom: 30px;
+  vertical-align: top;
 }
 #chirp-settings > section::after {
   left: 100%;
@@ -193,7 +197,6 @@ ul.chirp li time {
   margin-left: -1px;
   margin-top: -20px;
 }
-#chirp-settings > section .download,
 #chirp-settings > section .try-it-out {
   display: block;
   border-top: 2px solid rgba(255, 255, 255, 0.2);
@@ -217,9 +220,6 @@ ul.chirp li time {
 #chirp-settings > section .download {
   padding-bottom: 0;
 }
-#chirp-settings.try-it > section {
-  margin-top: -225px;
-}
 #chirp-settings.try-it > section .try-it-out {
   display: block;
   height: 230px;
@@ -230,12 +230,39 @@ ul.chirp li time {
   opacity: 1;
   border-width: 2px;
 }
+#windbaggery {
+  position: fixed;
+  display: none;
+  top: 0;
+  right: 0;
+  height: 161px;
+  left: 38%;
+  background: #fa7244;
+  z-index: 2;
+  color: #fff;
+  font-weight: 600;
+  padding: 30px;
+}
+#windbaggery > img {
+  width: 131px;
+  float: left;
+  padding-right: 30px;
+}
+#windbaggery a {
+  color: #fffee5;
+}
 #chirp-tweets,
 #chirp-settings {
   float: left;
   position: absolute;
   top: 0;
   z-index: 1;
+}
+#chirp-tweets.rogie {
+  top: 161px;
+}
+#chirp-tweets.rogie + #windbaggery {
+  display: block;
 }
 #chirp-tweets {
   text-align: left;
@@ -251,7 +278,7 @@ ul.chirp li time {
   left: 0;
   color: #fff;
   font-weight: 600;
-  z-index: 2;
+  z-index: 3;
   height: 100%;
 }
 input,
@@ -277,12 +304,13 @@ select:focus {
   background-color: #fffee5;
 }
 .btn {
-  padding: 15px;
+  padding: 10px;
   display: inline-block;
   background: #fa7244;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  font-size: 16px;
   text-decoration: none;
   color: #fff;
 }
