@@ -15,7 +15,7 @@ body {
 }
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 500;
+  font-weight: 200;
   font-size: 20px;
   line-height: 1.4;
 }
@@ -96,6 +96,7 @@ ul.chirp li time {
   padding: 20px;
   position: absolute;
   top: 50%;
+  right: 0;
   width: 100%;
   margin-top: -110px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -134,9 +135,6 @@ ul.chirp li time {
   display: block;
   border-top: 2px solid rgba(255, 255, 255, 0.2);
   padding: 20px 0;
-}
-#chirp-settings > section .tinker {
-  display: none;
 }
 #chirp-settings > section .download {
   padding-bottom: 0;
@@ -190,9 +188,6 @@ textarea:focus {
   border-radius: 5px;
   text-decoration: none;
   color: #fff;
-  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 label {
   color: rgba(255, 255, 255, 0.7);
