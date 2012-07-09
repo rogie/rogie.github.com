@@ -100,6 +100,7 @@ ul.chirp li time {
   right: 0;
   top: 0;
   bottom: 0;
+  background: #fff;
 }
 .chirp-tweets-empty > p {
   border: 3px dashed rgba(0, 0, 0, 0.2);
@@ -134,9 +135,10 @@ ul.chirp li time {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  top: 0;
+  top: 50%;
   right: 0;
   width: 100%;
+  margin-top: -110px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 #chirp-settings > section h1 + p {
@@ -219,6 +221,9 @@ ul.chirp li time {
 #chirp-settings > section .download {
   padding-bottom: 0;
 }
+#chirp-settings.try-it > section {
+  margin-top: -225px;
+}
 #chirp-settings.try-it > section .try-it-out {
   display: block;
   height: 230px;
@@ -231,8 +236,7 @@ ul.chirp li time {
 }
 #windbaggery {
   position: fixed;
-  display: none;
-  top: 0;
+  top: -161px;
   right: 0;
   height: 161px;
   left: 38%;
@@ -241,6 +245,16 @@ ul.chirp li time {
   color: #fff;
   font-weight: 600;
   padding: 30px;
+  -webkit-transform: translatez(0);
+  -moz-transform: translatez(0);
+  -ms-transform: translatez(0);
+  -o-transform: translatez(0);
+  transform: translatez(0);
+  -webkit-transition: top 0.3s ease-in-out;
+  -moz-transition: top 0.3s ease-in-out;
+  -ms-transition: top 0.3s ease-in-out;
+  -o-transition: top 0.3s ease-in-out;
+  transition: top 0.3s ease-in-out;
 }
 #windbaggery > img {
   width: 131px;
@@ -249,6 +263,13 @@ ul.chirp li time {
 }
 #windbaggery a {
   color: #fffee5;
+}
+#chirp-tweets {
+  -webkit-transition: top 0.2s ease-in-out;
+  -moz-transition: top 0.2s ease-in-out;
+  -ms-transition: top 0.2s ease-in-out;
+  -o-transition: top 0.2s ease-in-out;
+  transition: top 0.2s ease-in-out;
 }
 #chirp-tweets,
 #chirp-settings {
@@ -261,7 +282,7 @@ ul.chirp li time {
   top: 161px;
 }
 #chirp-tweets.rogie + #windbaggery {
-  display: block;
+  top: 0;
 }
 #chirp-tweets {
   text-align: left;

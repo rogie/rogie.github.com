@@ -90,6 +90,7 @@ ul.chirp{
 	right: 0;
 	top: 0;
 	bottom: 0;	
+	background: #fff;
 	>p{
 		border:  3px dashed rgba(0,0,0,0.2);
 		.border-radius(10px);
@@ -117,10 +118,10 @@ ul.chirp{
 		padding: 30px;
 		position: absolute;
 		.transition(all .3s ease-in-out);
-		top: 0;
+		top: 50%;
 		right: 0;
 		width: 100%;
-		//margin-top: -110px;
+		margin-top: -110px;
 		text-shadow: 0 1px 1px rgba(0,0,0,0.2);
 		h1{
 			+ p{
@@ -203,7 +204,7 @@ ul.chirp{
 	
 	&.try-it{
 		>section{
-			//margin-top: -110px - 230px/2;
+			margin-top: -110px - 230px/2;
 			.try-it-out{
 				display: block;
 				height: 230px;
@@ -217,8 +218,7 @@ ul.chirp{
 
 #windbaggery{
 	position: fixed;
-	display: none;
-	top: 0;
+	top: -161px;
 	right: 0;
 	height: 161px;
 	left: 38%;
@@ -227,6 +227,8 @@ ul.chirp{
 	color: #fff;
 	font-weight: 600;
 	padding: 30px;
+	.transform(translateZ(0));
+	.transition(top .3s ease-in-out);
 	>img{
 		width: 131px;	
 		float: left;
@@ -236,6 +238,9 @@ ul.chirp{
 	a{
 		color: @yeller;
 	}
+}
+#chirp-tweets{
+	.transition(top .2s ease-in-out);
 }
 #chirp-tweets,
 #chirp-settings{
@@ -248,7 +253,7 @@ ul.chirp{
 	top: 161px;
 	
 	+ #windbaggery{
-		display: block;
+		top: 0;
 	}
 }
 #chirp-tweets{
