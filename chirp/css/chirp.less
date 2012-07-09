@@ -21,12 +21,33 @@ body {
    line-height: 1.4;
    
 }
+a{
+	.transition(all .2s ease-in-out);
+}
 h1,h2,h3{
 	padding: 0;
 	margin: 0;
 }
 h1{
 	font-size: 40px;
+}
+.help{
+	background: #fff;
+	.border-radius(1em);
+	width: 1.2em;
+	height: 1.2em;
+	line-height: 1.2em;
+	color: @blue;
+	text-align: center;
+	text-shadow: none;
+	font-size: 0.8em;
+	font-weight: bold;
+	display: inline-block;
+	text-decoration: none;
+	.opacity(60);
+	&:hover{
+		.opacity(100);
+	}
 }
 ul.chirp{
 	padding: 0;
@@ -94,6 +115,7 @@ ul.chirp{
 		background: @blue;
 		padding: 20px;
 		position: absolute;
+		.transition(all .3s ease-in-out);
 		top: 50%;
 		right: 0;
 		width: 100%;
@@ -106,18 +128,40 @@ ul.chirp{
 			}
 		}
 		form{
+			color: rgba(255,255,255,0.7);
+			font-size: 16px;
 			label{
-				display: block;
+				display: inline;
 				vertical-align: text-top;
+			}
+			input, select, option{
+				text-align: center;
 			}
 			input{
 				width: 8em;
 			}
 			textarea{
-				width: 80%;
+				width: 100%;
+				max-width: 100% !important;
 				height: 6em;
+				margin-top: 5px;
 			}
+			label.template{
+				display: block;
+				textarea{
+					display: block;
+					width: 100%;
+					font-family: Lucida Console,Monaco,Andale Mono,"MS Gothic",monospace;
+					font-size: 11px;
+					font-weight: 300;
+				}
+			}
+			
 		}
+		.download{
+			text-align: center;
+		}
+		
 		&::after{
 			left: 100%;
 			border: solid transparent;
@@ -134,17 +178,34 @@ ul.chirp{
 		}
 		
 		.download,
-		.tinker{
+		.try-it-out{
 			display: block;
 			border-top: 2px solid rgba(255,255,255,0.2);
 			padding: 20px 0;
 		}
-		.tinker{
-			display: none;
+		.try-it-out{
+			height: 0;
+			padding: 0;
+			border-width: 0;
+			overflow: hidden;
+			.opacity(0);
+			.transition(all .3s ease-in-out);
 		}
-		
 		.download{
 			padding-bottom: 0;	
+		}
+	}
+	
+	&.try-it{
+		>section{
+			margin-top: -110px - 230px/2;
+			.try-it-out{
+				display: block;
+				height: 230px;
+				padding: 20px 0;
+				.opacity(100);
+				border-width: 2px;
+			}
 		}
 	}
 }
@@ -165,7 +226,7 @@ ul.chirp{
 }
 #chirp-settings{
 	padding: 0;
-	text-align: right;
+	text-align: left;
 	position: fixed;
 	right: 62%;
 	left: 0;
@@ -174,21 +235,22 @@ ul.chirp{
 	z-index: 2;
 	height: 100%;
 }
-input, textarea{
-	-webkit-border-radius: 5px;
-	padding: 5px;
+input, textarea, select{
+	.border-radius(3px);
+	padding: 2px 5px;
 	border: 0;
 	font-size: 14px;
 	font-family: inherit;
 	font-weight: 600;
+	-webkit-appearance:none;
+	@s:0 0 0 1px darken(@blue,10%), 0 2px 0 rgba(255,255,255,0.4), inset 0 2px 3px rgba(0,0,0,0.2);
+	.box-shadow(@s);
 	
 	&:focus{
 		outline: none;
-		.box-shadow(none);
+		background-color: lighten(#FFF87F,20%);
 	}
 }
-
-
 .btn{
 	padding: 15px;
 	display: inline-block;
@@ -199,8 +261,7 @@ input, textarea{
 }
 
 label{
-	color: rgba(255,255,255,0.7);
-	font-size: 16px;
+
 }
 #bg{
 	position: fixed;

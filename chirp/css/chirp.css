@@ -19,6 +19,13 @@ body {
   font-size: 20px;
   line-height: 1.4;
 }
+a {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
 h1,
 h2,
 h3 {
@@ -27,6 +34,32 @@ h3 {
 }
 h1 {
   font-size: 40px;
+}
+.help {
+  background: #fff;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  border-radius: 1em;
+  width: 1.2em;
+  height: 1.2em;
+  line-height: 1.2em;
+  color: #00a0d1;
+  text-align: center;
+  text-shadow: none;
+  font-size: 0.8em;
+  font-weight: bold;
+  display: inline-block;
+  text-decoration: none;
+  filter: alpha(opacity=60);
+  -khtml-opacity: 0.6;
+  -moz-opacity: 0.6;
+  opacity: 0.6;
+}
+.help:hover {
+  filter: alpha(opacity=100);
+  -khtml-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
 }
 ul.chirp {
   padding: 0;
@@ -96,6 +129,11 @@ ul.chirp li time {
   background: #00a0d1;
   padding: 20px;
   position: absolute;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   top: 50%;
   right: 0;
   width: 100%;
@@ -106,16 +144,40 @@ ul.chirp li time {
   margin-top: -0.15em;
   color: rgba(255, 255, 255, 0.7);
 }
+#chirp-settings > section form {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+}
 #chirp-settings > section form label {
-  display: block;
+  display: inline;
   vertical-align: text-top;
+}
+#chirp-settings > section form input,
+#chirp-settings > section form select,
+#chirp-settings > section form option {
+  text-align: center;
 }
 #chirp-settings > section form input {
   width: 8em;
 }
 #chirp-settings > section form textarea {
-  width: 80%;
+  width: 100%;
+  max-width: 100% !important;
   height: 6em;
+  margin-top: 5px;
+}
+#chirp-settings > section form label.template {
+  display: block;
+}
+#chirp-settings > section form label.template textarea {
+  display: block;
+  width: 100%;
+  font-family: Lucida Console, Monaco, Andale Mono, "MS Gothic", monospace;
+  font-size: 11px;
+  font-weight: 300;
+}
+#chirp-settings > section .download {
+  text-align: center;
 }
 #chirp-settings > section::after {
   left: 100%;
@@ -132,16 +194,41 @@ ul.chirp li time {
   margin-top: -20px;
 }
 #chirp-settings > section .download,
-#chirp-settings > section .tinker {
+#chirp-settings > section .try-it-out {
   display: block;
   border-top: 2px solid rgba(255, 255, 255, 0.2);
   padding: 20px 0;
 }
-#chirp-settings > section .tinker {
-  display: none;
+#chirp-settings > section .try-it-out {
+  height: 0;
+  padding: 0;
+  border-width: 0;
+  overflow: hidden;
+  filter: alpha(opacity=0);
+  -khtml-opacity: 0;
+  -moz-opacity: 0;
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 #chirp-settings > section .download {
   padding-bottom: 0;
+}
+#chirp-settings.try-it > section {
+  margin-top: -225px;
+}
+#chirp-settings.try-it > section .try-it-out {
+  display: block;
+  height: 230px;
+  padding: 20px 0;
+  filter: alpha(opacity=100);
+  -khtml-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+  border-width: 2px;
 }
 #chirp-tweets,
 #chirp-settings {
@@ -158,7 +245,7 @@ ul.chirp li time {
 }
 #chirp-settings {
   padding: 0;
-  text-align: right;
+  text-align: left;
   position: fixed;
   right: 62%;
   left: 0;
@@ -168,20 +255,26 @@ ul.chirp li time {
   height: 100%;
 }
 input,
-textarea {
-  -webkit-border-radius: 5px;
-  padding: 5px;
+textarea,
+select {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  padding: 2px 5px;
   border: 0;
   font-size: 14px;
   font-family: inherit;
   font-weight: 600;
+  -webkit-appearance: none;
+  -webkit-box-shadow: 0 0 0 1px #00799e, 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 2px 3px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 0 1px #00799e, 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 2px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 1px #00799e, 0 2px 0 rgba(255, 255, 255, 0.4), inset 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+  background-color: #fffee5;
 }
 .btn {
   padding: 15px;
@@ -192,10 +285,6 @@ textarea:focus {
   border-radius: 5px;
   text-decoration: none;
   color: #fff;
-}
-label {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
 }
 #bg {
   position: fixed;

@@ -47,6 +47,8 @@
 			var change = function(){
 				document.getElementById('bg').src = 'waiting';
 				updateOptions(this.name,this.value);
+				$('.username').text(chrpOptions.user);
+				$('.list-names').attr('href','http://twitter.com/'+ chrpOptions.user + '/lists');
 				chrp = new Chirp(chrpOptions);
 				chrp.show();
 			}			
@@ -58,6 +60,13 @@
 						updateOptions(this.name, this.value);
 					});
 				chrp = new Chirp(chrpOptions).show();
+				
+				$('.btn.try').on(
+					'click',
+					function(){
+						$('#chirp-settings').toggleClass('try-it');
+					});
+				
 			});
 				
 		</script>		
@@ -73,17 +82,37 @@
 			<section>
 				<h1>Chirp.js</h1>
 				<p>Tweets on your website. Simply.</p>
-				<div class="tinker">
+				<div class="try-it-out">
 					<form>
-						<label>User <input placeholder="A user name" value="rogie" name="user"></label>
-						<label>List <input placeholder="A list name" value="" name="list"></label>
-						<label>Show Retweets? <input placeholder="A list name" value="true" name="retweets"></label>
-						<label>Show Replies? <input placeholder="A list name" value="false" name="replies"></label>
-						<label>Tweets to show <input placeholder="5" value="20" name="max"></label>
-						<label>Template <textarea placeholder="5" name="templates.tweet"><li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<time>{{time_ago}}</time></li></textarea></label>
+						Show me
+							<select name="max">
+								<option>5</option>
+								<option selected="selected">25</option>
+								<option>50</option>
+								<option>100</option>
+							</select>
+						tweets
+						from 
+							<input placeholder="A user name" value="rogie" name="user">
+							<select name="retweets">
+								<option selected="selected" value="true">Show</option>
+								<option value="false">Don't show </option>
+							</select>
+							me retweets
+							and
+							<select name="replies">
+									<option value="true">show</option>
+									<option selected="selected"  value="false">don't show</option>
+								</select>
+								me replies.	
+						Show me tweets from <span class="username">rogie</span>'s list <input placeholder="List name" name="list"> <a class="list-names help" title="Show me some lists" href="http://twitter.com/rogie/lists">?</a>		
+						<br><br>
+						<label class="template">Use this html for a tweet <a class="help" href="https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=twitterapi&count=2" title="Hey there smarty pants ;)">?</a> <textarea placeholder="5" name="templates.tweet"><li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<time>{{time_ago}}</time></li></textarea></label>
 					</form>
+					
 				</div>
 				<div class="download">
+					<a href="#try" class="btn try">Try it!</a>
 					<a href="#LINK" class="btn">Download Chirp.js</a>
 				</div>
 			</section>
