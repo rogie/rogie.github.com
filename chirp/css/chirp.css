@@ -340,8 +340,23 @@ select:focus {
   top: -200px;
   width: 100%;
   z-index: 0;
+  filter: alpha(opacity=100);
+  -khtml-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -ms-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
   -webkit-transform: translatez(0);
   -webkit-filter: blur(25px);
   filter: progid:dximagetransform.microsoft.blur(pixelradius=25);
   -ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelradius=25)";
+}
+#bg.hide {
+  filter: alpha(opacity=0);
+  -khtml-opacity: 0;
+  -moz-opacity: 0;
+  opacity: 0;
 }

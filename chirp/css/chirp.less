@@ -308,8 +308,14 @@ label{
 	top: -200px;
 	width: 100%;
 	z-index: 0;
+	.opacity(100);
+	.transition(opacity .3s ease-in-out);
 	-webkit-transform: translateZ(0);
 	-webkit-filter: blur(25px); 
 	filter:progid:DXImageTransform.Microsoft.Blur(pixelradius=25);
 	-ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelradius=25)";
+	
+	&.hide{
+		.opacity(0);
+	}
 }

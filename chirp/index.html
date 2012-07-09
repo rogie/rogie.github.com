@@ -21,8 +21,8 @@
 		<script>
 			function gotTweetsYo(data){
 				if(data){
-					var img = document.getElementById('bg');
-					img.src = data[Math.floor(Math.random()*data.length)].user.profile_image_url;
+					$('#bg').on('load', function(){$(this).removeClass('hide')})
+						.attr('src', data[Math.floor(Math.random()*data.length)].user.profile_image_url);
 				}
 			}
 			
@@ -45,7 +45,7 @@
 			}
 			
 			var change = function(){
-				document.getElementById('bg').src = 'waiting';
+				$('#bg').addClass('hide');
 				updateOptions(this.name,this.value);
 				$('.username').text(chrpOptions.user);
 				$('#chirp-tweets').removeAttr('class').addClass(chrpOptions.user);
