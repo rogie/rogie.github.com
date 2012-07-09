@@ -136,6 +136,9 @@ ul.chirp li time {
   border-top: 2px solid rgba(255, 255, 255, 0.2);
   padding: 20px 0;
 }
+#chirp-settings > section .tinker {
+  display: none;
+}
 #chirp-settings > section .download {
   padding-bottom: 0;
 }
