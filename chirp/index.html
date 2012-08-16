@@ -16,14 +16,16 @@
 		<script src="js/html5shiv.js" type="text/javascript"></script>
 		
 		<!--Chirp.js doesn't need jQuery...YAY! -->
-		<script src="js/chirp.min.js" type="text/javascript"></script>
+		<script src="js/chirp.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="css/chirp.css">
 		<script>
 			function gotTweetsYo(data){
 				if(data){
+					$('.chirp-tweets-empty').addClass('hide');
 					var dude = data[Math.floor(Math.random()*data.length)].user;
-					$('#bg').on('load', function(){$(this).removeClass('hide')})
-						.attr('src', dude.profile_image_url);
+					$('#bg')
+					  .on('load', function(){console.log('loaded');$(this).removeClass('hide')})
+						.attr('src', dude.profile_image_url + "?" + Math.random());
 				}
 			}
 			
@@ -46,10 +48,11 @@
 			}
 			
 			var change = function(){
+				$('.chirp-tweets-empty').removeClass('hide');
 				$('#bg').addClass('hide');
 				updateOptions(this.name,this.value);
 				$('.username').text(chrpOptions.user);
-				$('#chirp-tweets').removeAttr('class').addClass(chrpOptions.user);
+				$('#windbaggery').removeAttr('class').addClass(chrpOptions.user);
 				$('.list-names').attr('href','http://twitter.com/'+ chrpOptions.user + '/lists');
 				chrp = new Chirp(chrpOptions);
 				chrp.show();
@@ -60,15 +63,14 @@
 					.on('change',change)
 					.each(function(){
 						updateOptions(this.name, this.value);
-					});
-				chrp = new Chirp(chrpOptions).show();
+					})
+					.filter('[name=user]').trigger('change');
 				
 				$('.btn.try').on(
 					'click',
 					function(){
 						$('#chirp-settings').toggleClass('try-it');
 					});
-				
 			});
 				
 		</script>		
@@ -79,8 +81,8 @@
 		      <feGaussianBlur stdDeviation="25" />
 		    </filter>
 		</svg>
-		<img id="bg" style="filter: url(#svg-blur)">
 		<div id="chirp-settings">
+			<div id="bg-blur"><img id="bg" style="filter: url(#svg-blur)"></div>
 			<section>
 				<h1>Chirp.js</h1>
 				<p>Tweets on your website.</p>
@@ -107,9 +109,9 @@
 									<option selected="selected"  value="false">don't show</option>
 								</select>
 								me replies.	
-						Show me tweets from <span class="username">rogie</span>'s list <input placeholder="List name" name="list"> <a class="list-names help" title="Show me some lists" href="http://twitter.com/rogie/lists">?</a>		
+						Show me tweets from <span class="username">rogie</span>'s list <input placeholder="List name" name="list"> <a target="chirp-help" class="list-names help" title="Show me some lists" href="http://twitter.com/rogie/lists">?</a>		
 						<br><br>
-						<label class="template">Use this html for a tweet <a class="help" href="https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=twitterapi&count=2" title="Hey there smarty pants ;)">?</a> <textarea placeholder="5" name="templates.tweet"><li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<time>{{time_ago}}</time></li></textarea></label>
+						<label class="template">Use this html for a tweet <a target="chirp-help" class="help" href="https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=twitterapi&count=2" title="Hey there smarty pants ;)">?</a> <textarea placeholder="5" name="templates.tweet"><li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<span class="meta"><time><a href="http://twitter.com/{{user.name}}/statuses/{{id}}">{{time_ago}}</a></time> &mdash; via <a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}">{{user.name}}</a></span></li></textarea></label>
 					</form>
 					
 				</div>
@@ -119,14 +121,15 @@
 				</div>
 			</section>
 		</div>
-		<div id="chirp-tweets" class="rogie">
-		</div>
-		<div id="windbaggery">
-			<img src="mtn_rogie.png">
-			Sweet mother of Abraham Lincoln, these are my tweets! Press the Try it button over yonder to see other more important people's tweets. If you dig this, <a href="http://twitter.com/rogie">foller me on the twitters</a> and <a href="">fill up my gamblin' funds here</a>.
+		<div id="chirp-tweets">
 		</div>
 		<div class="chirp-tweets-empty">
 			<p><span>Waiting for tweets, yo.</span></p>
+		</div>
+		<div id="windbaggery">
+			<img src="http://dribbble.s3.amazonaws.com/users/255/screenshots/683315/attachments/61523/rogie.png">
+			Sweet mother of Abraham Lincoln, these are my tweets! Press the Try it button over yonder to see other more important people's tweets. If you dig this, <a href="http://twitter.com/rogie">foller me on the twitters</a> and <a href="">fill up my gamblin' funds here</a>.
 		</div>	
+    
 	</body>
 </html>

@@ -1,7 +1,7 @@
 @import "mixins";
 
 @blue: #00A0D1;
-@red: desaturate(lighten(#FF5C26,5%),10%);
+@red: lighten(#E72864,3%);
 @yeller: lighten(#FFF87F,20%);
 @dark: rgba(0,0,0,0.85);
 
@@ -10,6 +10,9 @@ html, body{
 	padding: 0;
 	width: 100%;
 	height: 100%;
+}
+svg{
+  height: 0;
 }
 *{
 	-webkit-box-sizing: border-box;
@@ -21,7 +24,7 @@ body {
    font-weight: 200;
    font-size: 20px;
    line-height: 1.4;
-   
+   padding-top: 141px;
 }
 a{
 	.transition(all .2s ease-in-out);
@@ -39,7 +42,7 @@ h1{
 	width: 1.2em;
 	height: 1.2em;
 	line-height: 1.2em;
-	color: @blue;
+	color: @dark;
 	text-align: center;
 	text-shadow: none;
 	font-size: 0.8em;
@@ -71,8 +74,19 @@ ul.chirp{
 			.border-radius(5px);
 			border: none;
 		}
-		time{
-			color: #aaa;
+		
+		a{
+			color: darken(@red,10%);
+		}
+		
+		.meta{
+		  &, a{
+		    color: #aaa;  
+		    text-decoration: none;
+		  }
+		  a:hover{
+		    color: darken(#aaa,20%);
+		  }
 			display: block;
 			font-size: 0.50em;
 			font-weight: 600;
@@ -83,17 +97,24 @@ ul.chirp{
 }
 
 .chirp-tweets-empty{
+
+  &.hide{
+    .opacity(0);
+  }
+  .opacity(100);
+  .transition(all .3s ease-in-out);
 	text-align: center;
 	color: #ccc;
-	position: fixed;
-	padding: 20px;
-	left: 38%;
+	position: absolute;
+	left: 0;
 	right: 0;
-	top: 0;
-	bottom: 0;	
+	top: 161px;
+	bottom: 0;
+	z-index: 1;
 	background: #fff;
+	
 	>p{
-		border:  3px dashed rgba(0,0,0,0.2);
+		border:  3px dashed rgba(0,0,0,0.1);
 		.border-radius(10px);
 		position: absolute;
 		top: 20px; right:20px; bottom:20px;left:30px;
@@ -114,16 +135,27 @@ ul.chirp{
 }
 
 #chirp-settings{
+  background: #fff;
+  padding: 0;
+  text-align: left;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  color: #fff;
+  font-weight: 600;
+  z-index: 3;
+  overflow: hidden; 
+  .box-shadow(0 5px 5px 0px rgba(0,0,0,0.075)); 
 	>section{
-		background: @dark;
+	  background: @dark;
+		#gradient>.vertical(rgba(0,0,0,0.7),rgba(0,0,0,0.9));
+		background-color: transparent;
 		padding: 30px;
-		position: absolute;
 		.transition(all .3s ease-in-out);
-		top: 50%;
-		right: 0;
-		left: 0;
-		margin-top: -110px;
 		text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+		position: relative;
+		z-index: 2;
 		h1{
 			+ p{
 				margin-top: -0.15em;
@@ -187,15 +219,13 @@ ul.chirp{
 		
 		.try-it-out{
 			display: block;
-			border-top: 2px solid rgba(255,255,255,0.2);
+			border-top: 1px solid rgba(255,255,255,0.1);
 		}
 		.try-it-out{
-			height: 0;
-			padding: 0;
-			border-width: 0;
-			overflow: hidden;
+			display: none;
 			position: relative;
 			z-index:1;
+			padding: 30px 0 0 0;
 			.opacity(0);
 			.transition(all .3s ease-in-out);
 		}
@@ -207,74 +237,53 @@ ul.chirp{
 	
 	&.try-it{
 		>section{
-			margin-top: -110px - 230px/2;
 			.try-it-out{
 				display: block;
-				height: 230px;
-				padding: 30px 0 0 0;
 				.opacity(100);
-				border-width: 2px;
+				overflow: visible;
+				border-width: 1px;
 			}
 		}
 	}
 }
 
 #windbaggery{
-	position: fixed;
-	top: -161px;
 	right: 0;
-	height: 161px;
-	left: 38%;
-	background: @red;
+	#gradient>.vertical(rgba(255,255,255,0.6),rgba(255,255,255,0));
+	background-color: @yeller;
+	position: fixed;
 	z-index: 2;
-	color: #fff;
+	color: fadeout(#000,50%);
 	font-weight: 600;
 	padding: 30px;
+	bottom: -200px;
+	&.rogie{
+	  bottom: 0; 
+	  -webkit-filter: blur(0);
+	}
+	@s: 0 -1px 0 0 fadeout(darken(@yeller,55%),80%), 0 -5px 5px 0px rgba(0,0,0,0.075);
+	.box-shadow(@s);
 	.transform(translateZ(0));
-	.transition(top .3s ease-in-out);
+	.transition(all .3s ease-in-out);
+	-webkit-filter: blur(25px);
 	>img{
-		width: 131px;	
 		float: left;
 		padding-right: 30px;
+		max-height: 100px;
+		margin: -10px;
 	}
 	
 	a{
-		color: @yeller;
+		color: @red;
 	}
 }
 #chirp-tweets{
-	.transition(top .2s ease-in-out);
-}
-#chirp-tweets,
-#chirp-settings{
-	float: left;
-	position: absolute;
-	top: 0;
-	z-index: 1;
-}
-#chirp-tweets.rogie{
-	top: 161px;
-	
-	+ #windbaggery{
-		top: 0;
-	}
-}
-#chirp-tweets{
-	text-align: left;
-	left: 38%;
-	right: 0;
-	background: #fff;
-}
-#chirp-settings{
-	padding: 0;
-	text-align: left;
-	position: fixed;
-	right: 62%;
-	left: 0;
-	color: #fff;
-	font-weight: 600;
-	z-index: 3;
-	height: 100%;
+  .transition(top .2s ease-in-out);
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  background: #fff;
+  width: auto;
 }
 input, textarea, select{
 	.border-radius(3px);
@@ -299,26 +308,47 @@ input, textarea, select{
 .btn{
 	padding: 10px;
 	display: inline-block;
-	background: @red;
+	#gradient>.vertical(rgba(255,255,255,0.2),rgba(255,255,255,0));
+	background-color: @red;
+	text-shadow: 0 -1px 0px rgba(0,0,0,0.2);
+	@s:0 0 0 1px darken(@dark,10%), 0 2px 0 rgba(255,255,255,0.2), inset 0 1px 2px rgba(255,255,255,0.2);
+	.box-shadow(@s);
 	.border-radius(5px);
 	font-size: 16px;
 	text-decoration: none;
 	color: #fff;
+	&:active{
+	  #gradient>.vertical(rgba(255,255,255,0),rgba(255,255,255,0.2));
+	  background-color: darken(@red,10%);
+	  @s:0 0 0 1px darken(@dark,10%), 0 2px 0 rgba(255,255,255,0.2), inset 0 2px 3px rgba(0,0,0,0.2);
+	  .box-shadow(@s);
+	  color: rgba(255,255,255,0.7);
+	}
 }
 
 label{
 
 }
+#bg-blur{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 #bg{
-	position: fixed;
-	left: -200px;
-	top: -200px;
+	position: absolute;
+	left: -50px;
+	right: 0-50px;
+	margin-top: -100%;
 	width: 100%;
-	z-index: 0;
+	z-index: 1;
 	.opacity(100);
 	.transition(opacity .3s ease-in-out);
 	-webkit-transform: translateZ(0);
-	-webkit-filter: blur(25px); 
+	-webkit-filter: blur(20px); 
+	-o-filter: blur(20px); 
+	-moz-filter: blur(20px); 
 	filter:progid:DXImageTransform.Microsoft.Blur(pixelradius=25);
 	-ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelradius=25)";
 	
