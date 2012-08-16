@@ -34,7 +34,7 @@ h1,h2,h3{
 	margin: 0;
 }
 h1{
-	font-size: 40px;
+	font-size: 46px;
 }
 .help{
 	background: #fff;
@@ -149,13 +149,22 @@ ul.chirp{
   .box-shadow(0 5px 5px 0px rgba(0,0,0,0.075)); 
 	>section{
 	  background: @dark;
-		#gradient>.vertical(rgba(0,0,0,0.7),rgba(0,0,0,0.9));
+		#gradient>.vertical(rgba(0,0,0,0.7),rgba(0,0,0,0.8));
 		background-color: transparent;
 		padding: 30px;
 		.transition(all .3s ease-in-out);
 		text-shadow: 0 1px 1px rgba(0,0,0,0.2);
 		position: relative;
 		z-index: 2;
+		text-align: right;
+		
+		.identity{
+		  float: left;
+		  text-align: left;
+		}
+		>.btn{
+		  margin: 30px 0 30px 5px;
+		}
 		h1{
 			+ p{
 				margin-top: -0.15em;
@@ -216,40 +225,45 @@ ul.chirp{
 			margin-left: 0;
 			margin-top: -20px;	
 		}
-		
-		.try-it-out{
-			display: block;
-			border-top: 1px solid rgba(255,255,255,0.1);
-		}
-		.try-it-out{
-			display: none;
-			position: relative;
-			z-index:1;
-			padding: 30px 0 0 0;
-			.opacity(0);
-			.transition(all .3s ease-in-out);
-		}
-		.download{
-			padding-bottom: 0;	
-
-		}
 	}
-	
-	&.try-it{
-		>section{
-			.try-it-out{
-				display: block;
-				.opacity(100);
-				overflow: visible;
-				border-width: 1px;
-			}
-		}
-	}
+}
+#how, 
+#try{
+  display: none;
+  text-align: left;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin:30px  -30px 0 -30px;
+  padding: 30px 30px 0 30px;
+  position: relative;
+  z-index:1;
+  .opacity(100);
+  .box-shadow(0 -1px 0 rgba(0,0,0,0.3));
+  .transition(all .3s ease-in-out);
+}
+html.try{ 
+  .btn.try{
+    .btn.active;
+    .btn.secondary;
+  }
+  #try{
+    display: block;
+    .opacity(100);
+  }
+}
+html.how{
+  .btn.how{
+    .btn.active;
+    .btn.secondary;
+  }
+  #how{
+    display: block;
+    .opacity(100);
+  }
 }
 
 #windbaggery{
 	right: 0;
-	#gradient>.vertical(rgba(255,255,255,0.6),rgba(255,255,255,0));
+	#gradient>.vertical(rgba(255,255,255,0.4),rgba(255,255,255,0));
 	background-color: @yeller;
 	position: fixed;
 	z-index: 2;
@@ -308,21 +322,30 @@ input, textarea, select{
 .btn{
 	padding: 10px;
 	display: inline-block;
-	#gradient>.vertical(rgba(255,255,255,0.2),rgba(255,255,255,0));
+	#gradient>.vertical(rgba(255,255,255,0.1),rgba(255,255,255,0));
 	background-color: @red;
-	text-shadow: 0 -1px 0px rgba(0,0,0,0.2);
+	text-shadow: 0 -1px 1px darken(@red,30%);
 	@s:0 0 0 1px darken(@dark,10%), 0 2px 0 rgba(255,255,255,0.2), inset 0 1px 2px rgba(255,255,255,0.2);
 	.box-shadow(@s);
 	.border-radius(5px);
 	font-size: 16px;
 	text-decoration: none;
 	color: #fff;
-	&:active{
+	&:active, &.active{
 	  #gradient>.vertical(rgba(255,255,255,0),rgba(255,255,255,0.2));
-	  background-color: darken(@red,10%);
+	  background-color: darken(@red,25%);
 	  @s:0 0 0 1px darken(@dark,10%), 0 2px 0 rgba(255,255,255,0.2), inset 0 2px 3px rgba(0,0,0,0.2);
 	  .box-shadow(@s);
-	  color: rgba(255,255,255,0.7);
+	  color: rgba(255,255,255,0.5);
+	}
+	
+	&.secondary{
+	  background-color: #444;
+	  text-shadow: 0 -1px 1px darken(#444,30%);
+	  color: fadeout(white,20%);
+	  &:active, &.active{
+	    color: fadeout(white,50%);
+	  }
 	}
 }
 
@@ -338,9 +361,9 @@ label{
 }
 #bg{
 	position: absolute;
-	left: -50px;
-	right: 0-50px;
-	margin-top: -100%;
+	top: 0;
+	left: 0;
+	margin-top: -150%;
 	width: 100%;
 	z-index: 1;
 	.opacity(100);

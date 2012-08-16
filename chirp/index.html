@@ -59,18 +59,18 @@
 			}			
 			//setup this website
 			$(function(){
-				$('.try-it-out :input')
+				$('#try :input')
 					.on('change',change)
 					.each(function(){
 						updateOptions(this.name, this.value);
 					})
 					.filter('[name=user]').trigger('change');
-				
-				$('.btn.try').on(
-					'click',
-					function(){
-						$('#chirp-settings').toggleClass('try-it');
-					});
+					
+				$(window).on('hashchange', function(){
+				  var hash = location.hash.replace('#','');
+				  $('html').removeClass($('html').data('previous-hash')).addClass(hash);
+				  $('html').data('previous-hash',hash);
+				}).trigger('hashchange');	
 			});
 				
 		</script>		
@@ -84,9 +84,17 @@
 		<div id="chirp-settings">
 			<div id="bg-blur"><img id="bg" style="filter: url(#svg-blur)"></div>
 			<section>
-				<h1>Chirp.js</h1>
-				<p>Tweets on your website.</p>
-				<div class="try-it-out">
+				<div class="identity">
+				  <h1>Chirp.js</h1>
+				  <p>Tweets on your website.</p>
+				</div>
+				<a href="#how" class="btn how secondary">How to Use</a>
+				<a href="#try" class="btn try secondary">Try it!</a>
+				<a href="https://github.com/rogie/Chirp.js/zipball/master" class="btn">Download</a>
+				<div id="how">
+				  <h2>This is how</h2>
+				</div>
+				<div id="try">
 					<form>
 						Show me
 							<select name="max">
@@ -113,11 +121,6 @@
 						<br><br>
 						<label class="template">Use this html for a tweet <a target="chirp-help" class="help" href="https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=twitterapi&count=2" title="Hey there smarty pants ;)">?</a> <textarea placeholder="5" name="templates.tweet"><li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<span class="meta"><time><a href="http://twitter.com/{{user.name}}/statuses/{{id}}">{{time_ago}}</a></time> &mdash; via <a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}">{{user.name}}</a></span></li></textarea></label>
 					</form>
-					
-				</div>
-				<div class="download">
-					<a href="#try" class="btn try">Try it!</a>
-					<a href="https://github.com/rogie/Chirp.js/zipball/master" class="btn">Download</a>
 				</div>
 			</section>
 		</div>
