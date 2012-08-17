@@ -24,7 +24,7 @@
 					$('.chirp-tweets-empty').addClass('hide');
 					var dude = data[Math.floor(Math.random()*data.length)].user;
 					$('#bg')
-					  .on('load', function(){console.log('loaded');$(this).removeClass('hide')})
+					  .on('load', function(){$(this).removeClass('hide')})
 						.attr('src', dude.profile_image_url + "?" + Math.random());
 				}
 			}
@@ -59,16 +59,31 @@
 			}			
 			//setup this website
 			$(function(){
-				$('#try :input')
+				$('#try-it :input')
 					.on('change',change)
 					.each(function(){
 						updateOptions(this.name, this.value);
 					})
 					.filter('[name=user]').trigger('change');
+				
+				$('#chirp-settings>section>a').on(
+				  'click',
+				  function(e){
+				    var $link = $(this);
+				    if( $link.is('.active') ){
+				      $link.removeClass('active');
+				      e.preventDefault();
+				      window.location.hash = '';
+				    }else{
+				      $link.addClass('active').siblings('a').removeClass('active');				      
+				    }
+				  });
 					
-				$(window).on('hashchange', function(){
-				  var hash = location.hash.replace('#','');
-				  $('html').removeClass($('html').data('previous-hash')).addClass(hash);
+				$(window).on('hashchange', function(e){
+				  var hash = location.hash.replace('#',''),
+				      prev = $('html').data('previous-hash');
+				  $('html').removeClass(prev).addClass(hash);
+				  $('a[href=#' + prev + ']').removeClass('active');
 				  $('html').data('previous-hash',hash);
 				}).trigger('hashchange');	
 			});
@@ -76,63 +91,99 @@
 		</script>		
 	</head>
 	<body>
-		<svg>
-		    <filter id="svg-blur">
-		      <feGaussianBlur stdDeviation="25" />
-		    </filter>
-		</svg>
-		<div id="chirp-settings">
-			<div id="bg-blur"><img id="bg" style="filter: url(#svg-blur)"></div>
-			<section>
-				<div class="identity">
-				  <h1>Chirp.js</h1>
-				  <p>Tweets on your website, simply.</p>
-				</div>
-				<a href="#how" class="btn how secondary">How to Use</a>
-				<a href="#try" class="btn try secondary">Try it!</a>
-				<a href="https://github.com/rogie/Chirp.js/zipball/master" class="btn">Download</a>
-				<div id="how">
-				  <h2>This is how</h2>
-				</div>
-				<div id="try">
-					<form>
-						Show me
-							<select name="max">
-								<option>5</option>
-								<option selected="selected">25</option>
-								<option>50</option>
-								<option>100</option>
-							</select>
-						tweets
-						from 
-							<input placeholder="A user name" value="rogie" name="user">
-							<select name="retweets">
-								<option selected="selected" value="true">Show</option>
-								<option value="false">Don't show </option>
-							</select>
-							me retweets
-							and
-							<select name="replies">
-									<option value="true">show</option>
-									<option selected="selected"  value="false">don't show</option>
-								</select>
-								me replies.	
-						Show me tweets from <span class="username">rogie</span>'s list <input placeholder="List name" name="list"> <a target="chirp-help" class="list-names help" title="Show me some lists" href="http://twitter.com/rogie/lists">?</a>		
-						<br><br>
-						<label class="template">Use this html for a tweet <a target="chirp-help" class="help" href="https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=twitterapi&count=2" title="Hey there smarty pants ;)">?</a> <textarea placeholder="5" name="templates.tweet"><li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<span class="meta"><time><a href="http://twitter.com/{{user.name}}/statuses/{{id}}">{{time_ago}}</a></time> &mdash; via <a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}">{{user.name}}</a></span></li></textarea></label>
-					</form>
-				</div>
-			</section>
+		<div class="site">
+  		<svg>
+  		    <filter id="svg-blur">
+  		      <feGaussianBlur stdDeviation="25" />
+  		    </filter>
+  		</svg>
+  		<div id="chirp-settings">
+  			<div id="bg-blur"><img id="bg" style="filter: url(#svg-blur)"></div>
+  			<section>
+  				<div class="identity">
+  				  <h1>Chirp.js</h1>
+  				  <p>Tweets on your website, simply.</p>
+  				</div>
+  				<div id="fusion_ad"></div>	
+  				<a href="#how" class="btn how secondary">How to Use</a>
+  				<a href="#try" class="btn try secondary">Try it!</a>
+  				<a href="#download" class="btn">Download</a>
+  				<div id="how-to">
+  				  <h2>This is how</h2>
+  				</div>
+  				<div id="try-it">
+  					<form>
+  						Show me
+  							<select name="max">
+  								<option>5</option>
+  								<option selected="selected">25</option>
+  								<option>50</option>
+  								<option>100</option>
+  							</select>
+  						tweets
+  						from 
+  							<input placeholder="A user name" value="rogie" name="user">
+  							<select name="retweets">
+  								<option selected="selected" value="true">Show</option>
+  								<option value="false">Don't show </option>
+  							</select>
+  							me retweets
+  							and
+  							<select name="replies">
+  									<option value="true">show</option>
+  									<option selected="selected"  value="false">don't show</option>
+  								</select>
+  								me replies.	
+  						Show me tweets from <span class="username">rogie</span>'s list <input placeholder="List name" name="list"> <a target="chirp-help" class="list-names help" title="Show me some lists" href="http://twitter.com/rogie/lists">?</a>		
+  						<br><br>
+  						<label class="template">Use this html for a tweet <a target="chirp-help" class="help" href="https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=twitterapi&count=2" title="Hey there smarty pants ;)">?</a> <textarea placeholder="5" name="templates.tweet"><li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<span class="meta"><time><a href="http://twitter.com/{{user.name}}/statuses/{{id}}">{{time_ago}}</a></time> &mdash; via <a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}">{{user.name}}</a></span></li></textarea></label>
+  					</form>
+  				</div>
+  			</section>
+  		</div>
+  		<div id="chirp-tweets">
+  		</div>
+  		<div class="chirp-tweets-empty">
+  			<p><span>Waiting for tweets, yo.</span></p>
+  		</div>
+  		<div id="windbaggery">
+  			<img src="http://dribbble.s3.amazonaws.com/users/255/screenshots/683315/attachments/61523/rogie.png">
+  			Sweet mother of Abraham Lincoln, these are my tweets! Press the Try it button over yonder to see other more important people's tweets. If you dig this, <a href="http://twitter.com/rogie">foller me on the twitters</a> and <a href="">fill up my gamblin' funds here</a>.
+  		</div>	
+  		</div>
+		<div id="download-it">
+		  <a href="#" class="close" title="Close this"></a>
+		  <section>
+		  <div class="back"></div>
+		  <div class="front">
+  		  <p>This is how you install it</p>
+  		  <p class="actions">
+    		  <a href="https://github.com/rogie/Chirp.js/zipball/master" class="btn">
+    		    Download it
+    		  </a>
+    		</p>		
+		  </div>
+		  </section>
 		</div>
-		<div id="chirp-tweets">
-		</div>
-		<div class="chirp-tweets-empty">
-			<p><span>Waiting for tweets, yo.</span></p>
-		</div>
-		<div id="windbaggery">
-			<img src="http://dribbble.s3.amazonaws.com/users/255/screenshots/683315/attachments/61523/rogie.png">
-			Sweet mother of Abraham Lincoln, these are my tweets! Press the Try it button over yonder to see other more important people's tweets. If you dig this, <a href="http://twitter.com/rogie">foller me on the twitters</a> and <a href="">fill up my gamblin' funds here</a>.
-		</div>	
-    
+		<script type="text/javascript">
+		(function(){
+		  var fusion = document.createElement('script');
+		  fusion.src = window.location.protocol + '//adn.fusionads.net/api/1.0/ad.js?zoneid=136&rand=' + Math.floor(Math.random()*9999999);
+		  fusion.async = true;
+		  (document.head || document.getElementsByTagName('head')[0]).appendChild(fusion);
+		})();</script>
+    <script type="text/javascript">
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4d9b563d588f4f6e7500000f');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
 	</body>
 </html>
