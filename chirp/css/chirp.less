@@ -155,7 +155,7 @@ ul.chirp{
   z-index: 3;
 	>section{
 	  background: @dark;
-		#gradient>.vertical(fadeout(darken(@dark,10%),20%),darken(@dark,10%));
+		#gradient>.vertical(fadeout(@dark,10%),darken(@dark,5%));
 		background-color: transparent;
 		padding: 30px;
 		.transition(all .3s ease-in-out);
@@ -163,7 +163,6 @@ ul.chirp{
 		position: relative;
 		z-index: 2;
 		text-align: right;
-		
 		.identity{
 		  float: left;
 		  text-align: left;
@@ -286,7 +285,7 @@ html.download{
     .transform( rotateX(-180deg) );
     .backface-visibility( hidden );
     .transform-style( preserve-3d );
-    background: lighten(@dark,30%);
+    background: darken(@dark,5%);
   }
   .front{
     background: darken(@dark,5%);
@@ -308,7 +307,7 @@ html.download{
     .hw-accelerate;
     .backface-visibility( hidden );
     .transform-style( preserve-3d );
-    .transform( rotateX(-180deg) translate3d(0,100%,-100px) scale(0.2) );
+    .transform( rotateX(-180deg) translate3d(0,20%,-100px) scale(0.2) );
     @t: -webkit-transform 0.5s ease-in-out;
     .transition(@t);
     left: 50%;
@@ -370,7 +369,7 @@ html.how{
 	>img{
 		float: left;
 		padding-right: 30px;
-		max-height: 100px;
+		max-height: 80px;
 		margin: -10px;
 	}
 	a{
@@ -406,32 +405,44 @@ input, textarea, select{
 	}
 }
 .btn{
-	padding: 10px;
+	padding: 0 20px;
+	vertical-align: top;
+	height: 42px;
+	line-height: 42px;
 	display: inline-block;
+	overflow: hidden;
 	font-weight: 600;
 	#gradient>.vertical(rgba(255,255,255,0.1),rgba(255,255,255,0));
 	background-color: @red;
-	text-shadow: 0 -1px 1px darken(@red,30%);
+	text-shadow: 0 -1px 0 darken(@red,30%);
 	@s:0 0 0 1px darken(@dark,10%), 0 2px 0 rgba(255,255,255,0.2), inset 0 1px 2px rgba(255,255,255,0.2);
 	.box-shadow(@s);
 	.border-radius(5px);
 	font-size: 16px;
 	text-decoration: none;
 	color: #fff;
-	.transition( none );
+	@t: background .2s ease-in-out, color .2s ease-in-out;
+	.transition( @t );
+	&:hover{
+	  background-color: lighten(@red,7%);  
+	}
 	&:active, &.active{
 	  #gradient>.vertical(rgba(255,255,255,0.075),rgba(255,255,255,0));
 	  background-color: darken(@red,30%);
 	  @s:0 0 0 1px darken(@dark,10%), 0 2px 0 rgba(255,255,255,0.1), inset 0 2px 3px rgba(0,0,0,0.3);
 	  .box-shadow(@s);
 	  color: rgba(255,255,255,0.3);
+	  line-height: 44px;
 	}
 	&.secondary{
-	  background-color: @dark;
-	  text-shadow: 0 -1px 1px darken(@dark,30%);
-	  color: fadeout(white,20%);
+	  background-color: lighten(@dark,5%);
+	  text-shadow: 0 -1px 0 darken(@dark,30%);
+	  color: fadeout(@yeller,30%);
+	  &:hover{
+	    background-color: lighten(@dark,10%);  
+	  }
 	  &:active, &.active{
-	    color: fadeout(white,60%);
+	    color: fadeout(@yeller,60%);
 	    background-color: darken(@dark,10%);
 	  }
 	}

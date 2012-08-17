@@ -13,7 +13,7 @@ var Chirp = function( opts ){
 			target: null,
 			count: 100,
 			max: 20,
-			cacheExpire: 1000 * 60 * 2, //2 minute expire time
+			cacheExpire: 1000 * 60 * 2,
 			callback: function(){},
 			templates: {
 				base:'<ul class="chirp">{{tweets}}</ul>',
@@ -35,10 +35,8 @@ var Chirp = function( opts ){
 			var date = new Date((time || "").replace(/-/g,"/").replace(/[TZ]/g," ")),
 				diff = (((new Date()).getTime() - date.getTime()) / 1000),
 				day_diff = Math.floor(diff / 86400);
-					
 			if ( isNaN(day_diff) || day_diff < 0 || day_diff >= 31 )
 				return;
-					
 			return day_diff == 0 && (
 					diff < 60 && "just now" ||
 					diff < 120 && "1 minute ago" ||
@@ -50,27 +48,32 @@ var Chirp = function( opts ){
 				day_diff < 31 && Math.ceil( day_diff / 7 ) + " weeks ago";
 		},
 		htmlify = function( txt, entities ){
-		  if( entities.urls ){
-  		  for(var i=0,e;e=entities.urls[i];++i){
-  		    txt = txt.replace(e.url,'<a href="' + e.expanded_url + '">' + e.display_url + '</a>');
-  		  }
-		  }
-		  if( entities.media ){
-  		  for(var i=0,e;e=entities.media[i];++i){
-  		    txt = txt.replace(e.url,'<a href="' + e.expanded_url + '">' + e.display_url + '</a>');
-  		  }
-		  }
-  		if( entities.user_mentions ){
-  		  for(var i=0,e;e=entities.user_mentions[i];++i){
-  		    txt = txt.replace( new RegExp('@' + e.screen_name,'igm'),'<a href="http://twitter.com/' + e.screen_name + '" title="' + e.name + '">@' + e.screen_name + '</a>');
-  		  }
-		  }
-		  if( entities.hashtags ){
-		    for(var i=0,e;e=entities.hashtags[i];++i){
-		      txt = txt.replace('#'+e.text,'<a href="http://twitter.com/search/%23' + e.text + '">#' + e.text + '</a>');
+	    var indices = [],
+	        html = txt, 
+	        link = {
+	          'urls': function(e){ return '<a href="' + e.expanded_url + '">' + e.display_url + '</a>' },
+	          'hashtags': function(e){ return '<a href="http://twitter.com/search/%23' + e.text + '">#' + e.text + '</a>' },
+	          'user_mentions': function(e){ return '<a href="http://twitter.com/' + e.screen_name + '" title="' + e.name + '">@' + e.screen_name + '</a>'},
+	          'media': function(e){ return '<a href="' + e.expanded_url + '">' + e.display_url + '</a>' }
+	        }
+	    for( var key in entities ){
+	      e = entities[key]
+	      if( entities[key].length > 0 ){
+	        for(var i=0,e;e = entities[key][i];++i){
+    	      indices[e.indices[0]] = {
+    	        start: e.indices[0],
+    	        end: e.indices[1],
+    	        link: link[key](e) 
+    	      }
+  	      }
+	      }
+	    }	
+	    for( var i = indices.length-1; i > 0; --i){ 
+		    if( indices[i] != undefined ){
+		      html = html.substr(0,indices[i].start) + indices[i].link + html.substr(indices[i].end,html.length-1);
 		    }
 		  }
-		  return txt;
+		  return html;
 		},
 		toHTML = function( json ){
 			var twts = '',i=0; 
@@ -112,7 +115,6 @@ var Chirp = function( opts ){
 			if( localStorage && JSON ){
 				var now = new Date().getTime(), 
 					cachedData = null;
-				//retrieve
 				if( json == undefined ){	
 					try{ cachedData = JSON.parse(localStorage.getItem(key)); }catch(e){}
 					if( cachedData ){
@@ -125,7 +127,6 @@ var Chirp = function( opts ){
 						cachedData = null;
 					}
 					return cachedData;	
-				//set
 				}else{	
 					try{
 						localStorage.setItem(key, escape(JSON.stringify({time:now,data:json})));
@@ -185,7 +186,6 @@ var Chirp = function( opts ){
 		}
 		get();	
 	}
-	
 	//Chirp can be used as a singleton by passing the user to the function	
 	if(this.constructor != Chirp ){
 		new Chirp( opts ).show();
