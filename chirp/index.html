@@ -32,12 +32,16 @@
 			var chrp,
 				chrpOptions = {	
 					target:'chirp-tweets',
-					success: gotTweetsYo
+					success: gotTweetsYo,
+					templates: {
+						base: '<ul class="chirp">{{tweets}}</ul>',
+						tweet: '<li>{{html}}</li>'
+					}
 				}
 			
 			var updateOptions = function(name,value){
 				if( name == "templates.tweet" ){
-					chrpOptions.templates = {tweet:value};
+					chrpOptions.templates.tweet = value;
 				}else{
 					if( value.match(/(^true|^false)/) ){
 						chrpOptions[name] = (value == 'true'? true : false);
@@ -78,6 +82,24 @@
 				      $link.addClass('active').siblings('a').removeClass('active');				      
 				    }
 				  });
+				  
+				$(document).on(
+				  'click',
+				  '.btn.buy',
+				  function(e){
+				    var $link = $(this),
+				        $amount = $link.siblings('[name=amount]');
+				    if( $amount.val() ){
+				      if( $amount.val() > 0 ){
+				        $link.attr('href',$link.data('buy-link') + '&amount=' + $amount.val());
+				      }else{
+				        $link.attr('href',$link.data('download-link'));
+				      }
+				    }else{
+				    
+				    }
+				  }
+				);
 					
 				$(window).on('hashchange', function(e){
 				  var hash = location.hash.replace('#',''),
@@ -147,8 +169,10 @@
   			<p><span>Waiting for tweets, yo.</span></p>
   		</div>
   		<div id="windbaggery">
-  			<img src="http://dribbble.s3.amazonaws.com/users/255/screenshots/683315/attachments/61523/rogie.png">
-  			Sweet mother of Abraham Lincoln, these are my tweets! Press the Try it button over yonder to see other more important people's tweets. If you dig this, <a href="http://twitter.com/rogie">foller me on the twitters</a> and <a href="">fill up my gamblin' funds here</a>.
+  			<a href="http://twitter.com/rogie">
+  			  <img src="http://dribbble.s3.amazonaws.com/users/255/screenshots/683315/attachments/61523/rogie.png">
+  			</a>
+  			Sweet mother of Abraham Lincoln, these are my tweets! Press the Try it button over yonder to see other more important people's tweets. If you dig this, <a href="http://twitter.com/rogie">foller me on the twitters</a>.
   		</div>	
   		</div>
   		<div id="advanced-setup" class="dlg">
@@ -219,14 +243,15 @@ time_ago <span class="comment">Time of the tweet in human readable time ago. i.e
   		  <h4>Chirp is super easy to add to your site</h4>
   		  <p>Put this code anywhere you&apos;d like within your page <code>body</code> tag. You can place the script tag to <code>chirp.min.js</code> in the <code>head</code> if you&apos;d like. Check out the <a href="#advanced">advanced settings</a> if you fancy.</p>
   		  <pre><code>&lt;script src="path/to/chirp.min.js"&lt;/script&gt;
-&lt;script&gt;Chirp('yourusername')&lt;/script&gt;
-  		  </code></pre>
+&lt;script&gt;Chirp('yourusername')&lt;/script&gt;</code></pre>
   		  
-  		  
+  		  <p>Chirp is for everyone, those with cash and those with none. <br>Read: Enter a '0' if you&apos;re low on the dough.</p>
   		  <p class="actions">
-    		  <a href="https://github.com/rogie/Chirp.js/zipball/master" class="btn">
-    		    Download it
+    		  <input type="text" class="input price" name="amount" placeholder="Name your price">
+    		  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=rogie%40komodomedia%2ecom&item_name=Chirp.js&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8" data-buy-link="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=rogie%40komodomedia%2ecom&item_name=Chirp.js&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8" data-download-link="https://github.com/rogie/Chirp.js/zipball/master" class="btn buy">
+    		    Buy it!
     		  </a>
+    		  </form>
     		</p>		
 		  </div>
 		  </section>
