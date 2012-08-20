@@ -27,16 +27,29 @@ body {
    padding-top: 141px;
    color: @dark;
 }
+pre > code {  
+  display: block;
+  word-wrap: break-word;
+}
+code {
+  font-family: Lucida Console,Monaco,Andale Mono,"MS Gothic",monospace;
+  font-size: 0.9em;
+  display: inline;
+  color: lighten(desaturate(teal,50%),25%);
+}
 a{
+  color: desaturate(lighten(@red,5%),10%);
 	.transition(all .2s ease-in-out);
 }
-h1,h2,h3{
+h1,h2,h3, h4{
 	padding: 0;
-	margin: 0;
+	margin: 0 0 20px 0;
 }
 h1{
 	font-size: 40px;
+	margin-bottom: 0;
 }
+
 .help{
 	background: #fff;
 	.border-radius(1em);
@@ -68,7 +81,7 @@ ul.chirp{
 	li{
 		position: relative;
 		list-style: none;
-		border-bottom:  2px solid rgba(0,0,0,0.05);
+		border-bottom:  1px solid rgba(0,0,0,0.05);
 		padding: 10px 30px 10px 80px;
 		
 		img{
@@ -155,7 +168,7 @@ ul.chirp{
   z-index: 3;
 	>section{
 	  background: @dark;
-		#gradient>.vertical(fadeout(@dark,10%),darken(@dark,5%));
+		#gradient>.vertical(fadeout(@dark,15%),fadeout(darken(@dark,5%),10%));
 		background-color: transparent;
 		padding: 30px;
 		.transition(all .3s ease-in-out);
@@ -248,19 +261,30 @@ html.download{
   body{
     overflow: hidden;  
   }
-  .site{
-    /*
-    -webkit-filter: blur(10px);
-    -webkit-filter: blur(10px); 
-    -o-filter: blur(10px); 
-    -moz-filter: blur(10px); 
-    filter:progid:DXImageTransform.Microsoft.Blur(pixelradius=10);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelradius=10)";
-    */
+}
+html.advanced{
+  #advanced-setup{
+    .opacity(100);
+    visibility: visible;
+    >section{
+      .transform( rotateX(0) translate3d(0,0,0) scale(1) );
+    }
+  }
+  body{
+    overflow: hidden;  
+  }
+  .dlg{
+    >section{
+      height: 500px;
+      width: 800px;
+      margin-left: -400px;
+      margin-top: -250px;
+    }  
   }
 }
 
-#download-it{
+#download-it,
+.dlg{
   position: fixed;
   left: 0;
   right: 0;
@@ -273,6 +297,14 @@ html.download{
   background: -webkit-radial-gradient(circle, fadeout(@dark,50%), rgba(0,0,0,0.9));
   background: -moz-radial-gradient(circle, fadeout(@dark,50%), rgba(0,0,0,0.9));
   .perspective( 300px );
+  
+  .comment{
+    color: desaturate(darken(@yeller,60%),90%);
+  }
+  h4{
+    color: darken(desaturate(@yeller,70%),20%);
+  }
+  
   .close{
     position: absolute;
     left: 0;
@@ -288,7 +320,7 @@ html.download{
     background: darken(@dark,5%);
   }
   .front{
-    background: darken(@dark,5%);
+    background: darken(@dark,7%);
     .backface-visibility( hidden );
   }
   >section{
@@ -302,6 +334,7 @@ html.download{
       font-weight: 300;
       text-shadow: none;
       .border-radius;
+      overflow: auto;
     }
     position: absolute;
     .hw-accelerate;
@@ -313,14 +346,22 @@ html.download{
     left: 50%;
     top: 50%;
     width: 600px;
-    height: 400px;
+    height: 320px;
     margin-left: -300px;
-    margin-top: -200px;
+    margin-top: -160px;
     position: fixed;
     .box-shadow(0 10px 20px 0 rgba(0,0,0,0.2)); 
     
+    p,pre{
+      font-size: 0.9em;
+    }
     .actions{
       text-align: center;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px;
     } 
   }
 }

@@ -24,15 +24,15 @@
 					$('.chirp-tweets-empty').addClass('hide');
 					var dude = data[Math.floor(Math.random()*data.length)].user;
 					$('#bg')
-					  .on('load', function(){$(this).removeClass('hide')})
-						.attr('src', dude.profile_image_url + "?" + Math.random());
+					  .attr('src', dude.profile_image_url + "?" + Math.random())
+					  .on('load', function(){$(this).removeClass('hide')});
 				}
 			}
 			
 			var chrp,
 				chrpOptions = {	
 					target:'chirp-tweets',
-					callback: gotTweetsYo
+					success: gotTweetsYo
 				}
 			
 			var updateOptions = function(name,value){
@@ -105,7 +105,7 @@
   				  <p>Tweets on your website, simply.</p>
   				</div>
   				<!--div id="fusion_ad"></div-->	
-  				<a href="#download" class="btn how secondary">How to Use</a>
+  				<a href="#advanced" class="btn how secondary">Advanced Setup</a>
   				<a href="#try" class="btn try secondary">Try it!</a>
   				<a href="#download" class="btn">Download</a>
   				<div id="how-to">
@@ -151,12 +151,78 @@
   			Sweet mother of Abraham Lincoln, these are my tweets! Press the Try it button over yonder to see other more important people's tweets. If you dig this, <a href="http://twitter.com/rogie">foller me on the twitters</a> and <a href="">fill up my gamblin' funds here</a>.
   		</div>	
   		</div>
-		<div id="download-it">
+  		<div id="advanced-setup" class="dlg">
+			  <a href="#" class="close" title="Close this"></a>
+			  <section>
+			  <div class="back"></div>
+			  <div class="front">
+<h4>Simple n&apos; Easy User Tweets</h4>
+<pre><code>&lt;script src="path/to/chirp.min.js"&lt;/script&gt;
+&lt;script&gt;Chirp('yourusername')&lt;/script&gt;</code></pre>	
+<h4>Simple n&apos; Easy User List Tweets</h4>
+<pre><code>&lt;script src="path/to/chirp.min.js"&lt;/script&gt;
+&lt;script&gt;Chirp('yourusername/yourlistname')&lt;/script&gt;</code></pre>	
+<h4>Using Advanced Options</h4>
+<pre><code>&lt;script src="path/to/chirp.min.js"&lt;/script&gt;
+&lt;script&gt;Chirp({
+  name: 'rogie' <span class="comment">//Twitter username</span>
+  max: 3, <span class="comment">//Maximum number of tweets to show </span>
+  count: 100, <span class="comment">//Total tweets to retrieve</span>
+  retweets: true, <span class="comment">//Show/Don't show retweets</span>
+  replies: false,  <span class="comment">//Show/Don't show replies</span>
+  cacheExpire: 1000 * 60 * 2 <span class="comment">//Number of milliseconds to cache tweets</span>
+})&lt;/script&gt;</code></pre>	
+
+<h4>All Advanced Options</h4>
+<pre><code>name <span class="comment">&mdash; string
+Twitter username</span>
+max <span class="comment">&mdash; number
+The maximum number of tweets to show</span>
+count <span class="comment">&mdash; number
+The maximum number of tweets to retrieve</span>
+retweets <span class="comment">&mdash; true|false
+Show or don't show retweets</span>
+replies <span class="comment">&mdash; true|false
+Show or don't show at-replies</span>
+cacheExpire <span class="comment">&mdash; number
+Number of milliseconds to cache tweets (localstorage on the client).</span>
+list <span class="comment">&mdash; string
+Name of the list from the user to pull tweets from</span>
+target <span class="comment">&mdash; string
+Id of a target DOM object you'd like the tweets to get added to.</span>
+success <span class="comment">— function(json)
+A callback function called when tweets are successfully retrieved. The json data is the argument.</span>
+error <span class="comment">&mdash; function
+A callback function called when tweet retrieval errors.</span>
+templates <span class="comment">&mdash; json object
+A json collection with both the base and tweet templates. Example:
+templates: {
+  base:'&lt;ul class="chirp"&gt;{{tweets}}&lt;/ul&gt;',
+  tweet: '&lt;li&gt;&lt;img src="{{user.profile_image_url}}"&gt; {{html}}&lt;/li&gt;'
+}</span></code></pre>
+
+<h4>Advanced Templating</h4>
+<p>Templating is simple. You can modify the afore mentioned templates object in the options and adjust the template to fit your markup needs. All template variables exist within mustache braces, like so <code>{{variable}}</code>. Variables nested within sub-json objects can be referenced with dot notation. i.e. <code>{{user.name}}</code>. A reference of all variables can be found <a href="https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=twitterapi&count=2">here</a>.</p>
+<p>In addition to json variables returned from Twitter, additional variables added to the structure are:
+</p>
+<pre><code>html <span class="comment">The html of the tweet, including linked entities such as hashtags, at-replies and links.</span>
+index <span class="comment">The number index of the current tweet, starting with 1. Works great if you want to style the first couple of tweets differently.</span>
+time_ago <span class="comment">Time of the tweet in human readable time ago. i.e. 1 hour ago, Yesterday, 2 weeks ago, etc.</span></code></pre>
+			  </div>
+			  </section>
+			</div>
+		<div id="download-it" class="dlg">
 		  <a href="#" class="close" title="Close this"></a>
 		  <section>
 		  <div class="back"></div>
 		  <div class="front">
-  		  <p>This is how you install it</p>
+  		  <h4>Chirp is super easy to add to your site</h4>
+  		  <p>Put this code anywhere you&apos;d like within your page <code>body</code> tag. You can place the script tag to <code>chirp.min.js</code> in the <code>head</code> if you&apos;d like. Check out the <a href="#advanced">advanced settings</a> if you fancy.</p>
+  		  <pre><code>&lt;script src="path/to/chirp.min.js"&lt;/script&gt;
+&lt;script&gt;Chirp('yourusername')&lt;/script&gt;
+  		  </code></pre>
+  		  
+  		  
   		  <p class="actions">
     		  <a href="https://github.com/rogie/Chirp.js/zipball/master" class="btn">
     		    Download it
