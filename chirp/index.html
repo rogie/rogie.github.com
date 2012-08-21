@@ -16,23 +16,28 @@
 		<script src="js/html5shiv.js" type="text/javascript"></script>
 		
 		<!--Chirp.js doesn't need jQuery...YAY! -->
-		<script src="js/chirp.js" type="text/javascript"></script>
+		<script src="js/chirp.min.js" type="text/javascript"></script>
 		<link rel="stylesheet" href="css/chirp.css">
 		<script>
-			function gotTweetsYo(data){
+			function ermagherd(data){
 				if(data){
 					$('.chirp-tweets-empty').addClass('hide');
 					var dude = data[Math.floor(Math.random()*data.length)].user;
 					$('#bg')
-					  .attr('src', dude.profile_image_url + "?" + Math.random())
+					  .attr('src', dude.profile_background_image_url + "?" + Math.random())
 					  .on('load', function(){$(this).removeClass('hide')});
 				}
+			}
+			function meh(){
+			  var $span = $('.chirp-tweets-empty').removeClass('hide').find('p>span');
+			  $span.text( $span.data('error-text') );
 			}
 			
 			var chrp,
 				chrpOptions = {	
 					target:'chirp-tweets',
-					success: gotTweetsYo,
+					success: ermagherd,
+					error: meh,
 					templates: {
 						base: '<ul class="chirp">{{tweets}}</ul>',
 						tweet: '<li>{{html}}</li>'
@@ -52,7 +57,8 @@
 			}
 			
 			var change = function(){
-				$('.chirp-tweets-empty').removeClass('hide');
+				var $span = $('.chirp-tweets-empty').removeClass('hide').find('p>span');
+				$span.text( $span.data('waiting-text') );
 				$('#bg').addClass('hide');
 				updateOptions(this.name,this.value);
 				$('.username').text(chrpOptions.user);
@@ -96,7 +102,8 @@
 				        $link.attr('href',$link.data('download-link'));
 				      }
 				    }else{
-				    
+				      e.preventDefault();
+				      alert('Name your price, silly.');
 				    }
 				  }
 				);
@@ -105,6 +112,7 @@
 				  var hash = location.hash.replace('#',''),
 				      prev = $('html').data('previous-hash');
 				  $('html').removeClass(prev).addClass(hash);
+				  $('a[href=#' + hash + ']').addClass('active');
 				  $('a[href=#' + prev + ']').removeClass('active');
 				  $('html').data('previous-hash',hash);
 				}).trigger('hashchange');	
@@ -130,9 +138,6 @@
   				<a href="#advanced" class="btn how secondary">Advanced Setup</a>
   				<a href="#try" class="btn try secondary">Try it!</a>
   				<a href="#download" class="btn">Download</a>
-  				<div id="how-to">
-  				  <h2>This is how</h2>
-  				</div>
   				<div id="try-it">
   					<form>
   						Show me
@@ -156,7 +161,16 @@
   									<option selected="selected"  value="false">don't show</option>
   								</select>
   								me replies.	
-  						Show me tweets from <span class="username">rogie</span>'s list <input placeholder="List name" name="list"> <a target="chirp-help" class="list-names help" title="Show me some lists" href="http://twitter.com/rogie/lists">?</a>		
+  						Show me tweets from <span class="username">rogie</span>'s list <input placeholder="List name" name="list"> <a target="chirp-help" class="list-names help" title="Show me some lists" href="http://twitter.com/rogie/lists">?</a>. 
+  						Cache tweets for 		
+  						<select name="cacheExpire">
+  							<option value="0">0</option>
+  							<option value="5000">5 seconds</option>
+  							<option value="20000">20 seconds</option>
+  							<option selected="selected" value="60000">1 minute</option>
+  							<option value="300000">5 minutes</option>
+  						</select>
+  						.
   						<br><br>
   						<label class="template">Use this html for a tweet <a target="chirp-help" class="help" href="https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=twitterapi&count=2" title="Hey there smarty pants ;)">?</a> <textarea placeholder="5" name="templates.tweet"><li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<span class="meta"><time><a href="http://twitter.com/{{user.screen_name}}/statuses/{{id_str}}">{{time_ago}}</a></time> &mdash; via <a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}">{{user.name}}</a></span></li></textarea></label>
   					</form>
@@ -166,7 +180,7 @@
   		<div id="chirp-tweets">
   		</div>
   		<div class="chirp-tweets-empty">
-  			<p><span>Waiting for tweets, yo.</span></p>
+  			<p><span data-waiting-text="Waiting for twets, yo." data-error-text="Couldn't get these tweets :(">Waiting for tweets, yo.</span></p>
   		</div>
   		<div id="windbaggery">
   			<a href="http://twitter.com/rogie">
@@ -256,13 +270,6 @@ time_ago <span class="comment">Time of the tweet in human readable time ago. i.e
 		  </div>
 		  </section>
 		</div>
-		<script type="text/javascript">
-		(function(){
-		  var fusion = document.createElement('script');
-		  fusion.src = window.location.protocol + '//adn.fusionads.net/api/1.0/ad.js?zoneid=136&rand=' + Math.floor(Math.random()*9999999);
-		  fusion.async = true;
-		  (document.head || document.getElementsByTagName('head')[0]).appendChild(fusion);
-		})();</script>
     <script type="text/javascript">
       var _gauges = _gauges || [];
       (function() {

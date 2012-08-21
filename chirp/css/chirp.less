@@ -32,7 +32,7 @@ body {
 pre > code {  
   display: block;
   word-wrap: break-word;
-  font-size: 0.8em;
+  font-size: 0.7em;
 }
 code {
   font-family: Lucida Console,Monaco,Andale Mono,"MS Gothic",monospace;
@@ -60,7 +60,7 @@ h1{
 }
 
 .help{
-	background: #fff;
+	background: @yeller;
 	.border-radius(1em);
 	width: 1.2em;
 	height: 1.2em;
@@ -177,7 +177,8 @@ ul.chirp{
   z-index: 3;
 	>section{
 	  background: @dark;
-		#gradient>.vertical(lighten(@dark,5%),darken(@dark,10%));
+		#gradient>.vertical(fadeout(lighten(@dark,5%),25%),fadeout(darken(@dark,10%),10%));
+		background-color: transparent;
 		padding: 30px;
 		.transition(all .3s ease-in-out);
 		text-shadow: 0 1px 1px rgba(0,0,0,0.2);
@@ -202,6 +203,7 @@ ul.chirp{
 		}
 		form{
 			color: @yeller;
+			color: fadeout(@yeller,30%);
 			font-size: 16px;
 			label{
 				display: inline;
@@ -340,6 +342,7 @@ html.advanced{
     .clearfix;
     background: darken(@dark,7%);
     overflow: auto;
+    overflow-x: hidden;
     #gradient>.vertical(darken(@dark,2%),darken(@dark,10%));
   }
   >section{
@@ -385,7 +388,6 @@ html.advanced{
     } 
   }
 }
-#how-to, 
 #try-it{
   display: none;
   text-align: left;
@@ -394,6 +396,7 @@ html.advanced{
   padding: 30px 30px 0 30px;
   position: relative;
   z-index:1;
+  font-weight: 200;
   .opacity(100);
   .box-shadow(0 -1px 0 rgba(0,0,0,0.3));
   .transition(all .3s ease-in-out);
@@ -459,7 +462,7 @@ input, textarea, select{
 	font-size: 14px;
 	color: @yeller;
 	font-family: inherit;
-	font-weight: 600;
+	font-weight: 500;
 	-webkit-appearance:none;
 	-moz-appearance:none;
 	background: fadeout(@yeller,85%);
@@ -531,19 +534,19 @@ label{
 }
 #bg{
 	position: absolute;
-	top: 0;
-	left: 0;
-	margin-top: -150%;
-	width: 100%;
+	top: -20px;
+	left: -20px;
+	margin-top: 0;
+	width: 150%;
 	z-index: 1;
 	.opacity(100);
 	.transition(opacity .3s ease-in-out);
 	-webkit-transform: translateZ(0);
-	-webkit-filter: blur(20px); 
-	-o-filter: blur(20px); 
-	-moz-filter: blur(20px); 
-	filter:progid:DXImageTransform.Microsoft.Blur(pixelradius=25);
-	-ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelradius=25)";
+	-webkit-filter: blur(15px); 
+	-o-filter: blur(15px); 
+	-moz-filter: blur(15px); 
+	filter:progid:DXImageTransform.Microsoft.Blur(pixelradius=15);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelradius=15)";
 	
 	&.hide{
 		.opacity(0);

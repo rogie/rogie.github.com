@@ -29,7 +29,7 @@ body {
 pre > code {
   display: block;
   word-wrap: break-word;
-  font-size: 0.8em;
+  font-size: 0.7em;
 }
 code {
   font-family: Lucida Console, Monaco, Andale Mono, "MS Gothic", monospace;
@@ -63,7 +63,7 @@ h1 {
   margin-bottom: 0;
 }
 .help {
-  background: #fff;
+  background: #fffee5;
   -webkit-border-radius: 1em;
   -moz-border-radius: 1em;
   border-radius: 1em;
@@ -198,14 +198,15 @@ ul.chirp li .meta a:hover {
 }
 #chirp-settings > section {
   background: #373731;
-  background-color: #34342f;
-  background-image: -moz-linear-gradient(top, #44443d, #1c1c19);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#44443d), to(#1c1c19));
-  background-image: -webkit-linear-gradient(top, #44443d, #1c1c19);
-  background-image: -o-linear-gradient(top, #44443d, #1c1c19);
-  background-image: linear-gradient(to bottom, #44443d, #1c1c19);
+  background-color: rgba(49, 49, 44, 0.81);
+  background-image: -moz-linear-gradient(top, rgba(68, 68, 61, 0.75), rgba(28, 28, 25, 0.9));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(68, 68, 61, 0.75)), to(rgba(28, 28, 25, 0.9)));
+  background-image: -webkit-linear-gradient(top, rgba(68, 68, 61, 0.75), rgba(28, 28, 25, 0.9));
+  background-image: -o-linear-gradient(top, rgba(68, 68, 61, 0.75), rgba(28, 28, 25, 0.9));
+  background-image: linear-gradient(to bottom, rgba(68, 68, 61, 0.75), rgba(28, 28, 25, 0.9));
   background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff44443d', endColorstr='#ff1c1c19', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bf44443d', endColorstr='#e61c1c19', GradientType=0);
+  background-color: transparent;
   padding: 30px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -233,6 +234,7 @@ ul.chirp li .meta a:hover {
 }
 #chirp-settings > section form {
   color: #fffee5;
+  color: rgba(255, 254, 229, 0.7);
   font-size: 16px;
 }
 #chirp-settings > section form label {
@@ -402,6 +404,7 @@ html.advanced .dlg > section {
   zoom: 1;
   background: #242420;
   overflow: auto;
+  overflow-x: hidden;
   background-color: #292925;
   background-image: -moz-linear-gradient(top, #32322c, #1c1c19);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#32322c), to(#1c1c19));
@@ -486,7 +489,6 @@ html.advanced .dlg > section {
   right: 0;
   padding: 30px;
 }
-#how-to,
 #try-it {
   display: none;
   text-align: left;
@@ -495,6 +497,7 @@ html.advanced .dlg > section {
   padding: 30px 30px 0 30px;
   position: relative;
   z-index: 1;
+  font-weight: 200;
   filter: alpha(opacity=100);
   -khtml-opacity: 1;
   -moz-opacity: 1;
@@ -592,7 +595,7 @@ select {
   font-size: 14px;
   color: #fffee5;
   font-family: inherit;
-  font-weight: 600;
+  font-weight: 500;
   -webkit-appearance: none;
   -moz-appearance: none;
   background: rgba(255, 254, 229, 0.15000000000000002);
@@ -692,10 +695,10 @@ label {
 }
 #bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  margin-top: -150%;
-  width: 100%;
+  top: -20px;
+  left: -20px;
+  margin-top: 0;
+  width: 150%;
   z-index: 1;
   filter: alpha(opacity=100);
   -khtml-opacity: 1;
@@ -707,11 +710,11 @@ label {
   -o-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
   -webkit-transform: translatez(0);
-  -webkit-filter: blur(20px);
-  -o-filter: blur(20px);
-  -moz-filter: blur(20px);
-  filter: progid:dximagetransform.microsoft.blur(pixelradius=25);
-  -ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelradius=25)";
+  -webkit-filter: blur(15px);
+  -o-filter: blur(15px);
+  -moz-filter: blur(15px);
+  filter: progid:dximagetransform.microsoft.blur(pixelradius=15);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Blur(pixelradius=15)";
 }
 #bg.hide {
   filter: alpha(opacity=0);

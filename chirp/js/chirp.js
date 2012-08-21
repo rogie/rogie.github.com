@@ -152,6 +152,7 @@ var Chirp = function( opts ){
 					if( cached !== true ){
 						cache(url,json);
 					}
+					console.log('got here');
 					var twts = document.createElement('div');
 					twts.innerHTML = toHTML(json);
 					if( options.target == null ){
