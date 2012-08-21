@@ -40,7 +40,7 @@
 					error: meh,
 					templates: {
 						base: '<ul class="chirp">{{tweets}}</ul>',
-						tweet: '<li>{{html}}</li>'
+						tweet: '<li><a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}"><img src="{{user.profile_image_url}}"></a> {{html}}<span class="meta"><time><a href="http://twitter.com/{{user.screen_name}}/statuses/{{id_str}}">{{time_ago}}</a></time> &mdash; via <a href="http://twitter.com/{{user.screen_name}}" title="{{user.name}} — {{user.description}}">{{user.name}}</a></span></li>'
 					}
 				}
 			
@@ -197,13 +197,13 @@
 			  <div class="back"></div>
 			  <div class="front">
 <h4>Simple n&apos; Easy User Tweets</h4>
-<pre><code>&lt;script src="path/to/chirp.min.js"&lt;/script&gt;
+<pre><code>&lt;script src="path/to/chirp.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;Chirp('yourusername')&lt;/script&gt;</code></pre>	
 <h4>Simple n&apos; Easy User List Tweets</h4>
-<pre><code>&lt;script src="path/to/chirp.min.js"&lt;/script&gt;
+<pre><code>&lt;script src="path/to/chirp.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;Chirp('yourusername/yourlistname')&lt;/script&gt;</code></pre>	
 <h4>Using Advanced Options</h4>
-<pre><code>&lt;script src="path/to/chirp.min.js"&lt;/script&gt;
+<pre><code>&lt;script src="path/to/chirp.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;Chirp({
   name: 'rogie' <span class="comment">//Twitter username</span>
   max: 3, <span class="comment">//Maximum number of tweets to show </span>
@@ -258,7 +258,7 @@ time_ago <span class="comment">Time of the tweet in human readable time ago. i.e
 		  <div class="front">
   		  <h4>Chirp is super easy to add to your site</h4>
   		  <p>Put this code anywhere you&apos;d like within your page <code>body</code> tag. You can place the script tag to <code>chirp.min.js</code> in the <code>head</code> if you&apos;d like. Check out the <a href="#advanced">advanced settings</a> if you fancy.</p>
-  		  <pre><code>&lt;script src="path/to/chirp.min.js"&lt;/script&gt;
+  		  <pre><code>&lt;script src="path/to/chirp.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;Chirp('yourusername')&lt;/script&gt;</code></pre>
   		  
   		  <p>Chirp is for everyone, those with cash and those with none. <br>Read: Enter a '0' if you&apos;re low on the dough.</p>
