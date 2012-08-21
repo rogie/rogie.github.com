@@ -18,15 +18,18 @@ svg {
 }
 body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 200;
+  font-weight: 100;
   font-size: 20px;
   line-height: 1.4;
   padding-top: 141px;
   color: #373731;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 pre > code {
   display: block;
   word-wrap: break-word;
+  font-size: 0.8em;
 }
 code {
   font-family: Lucida Console, Monaco, Andale Mono, "MS Gothic", monospace;
@@ -41,6 +44,12 @@ a {
   -ms-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+}
+a img {
+  border: 0;
+}
+img {
+  -ms-interpolation-mode: bicubic;
 }
 h1,
 h2,
@@ -189,17 +198,14 @@ ul.chirp li .meta a:hover {
 }
 #chirp-settings > section {
   background: #373731;
-  background-color: rgba(42, 42, 37, 0.9);
+  background-color: #34342f;
+  background-image: -moz-linear-gradient(top, #44443d, #1c1c19);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#44443d), to(#1c1c19));
+  background-image: -webkit-linear-gradient(top, #44443d, #1c1c19);
+  background-image: -o-linear-gradient(top, #44443d, #1c1c19);
+  background-image: linear-gradient(to bottom, #44443d, #1c1c19);
   background-repeat: repeat-x;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(rgba(55, 55, 49, 0.85)), to(rgba(42, 42, 37, 0.9)));
-  background-image: -moz-linear-gradient(top, rgba(55, 55, 49, 0.85), rgba(42, 42, 37, 0.9));
-  background-image: -ms-linear-gradient(top, rgba(55, 55, 49, 0.85), rgba(42, 42, 37, 0.9));
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(55, 55, 49, 0.85)), color-stop(100%, rgba(42, 42, 37, 0.9)));
-  background-image: -webkit-linear-gradient(top, rgba(55, 55, 49, 0.85), rgba(42, 42, 37, 0.9));
-  background-image: -o-linear-gradient(top, rgba(55, 55, 49, 0.85), rgba(42, 42, 37, 0.9));
-  background-image: linear-gradient(top, rgba(55, 55, 49, 0.85), rgba(42, 42, 37, 0.9));
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(55, 55, 49, 0.85)', endColorstr='rgba(42, 42, 37, 0.9)', GradientType=0);
-  background-color: transparent;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff44443d', endColorstr='#ff1c1c19', GradientType=0);
   padding: 30px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -214,6 +220,9 @@ ul.chirp li .meta a:hover {
 #chirp-settings > section .identity {
   float: left;
   text-align: left;
+}
+#chirp-settings > section .identity p {
+  color: rgba(255, 254, 229, 0.4);
 }
 #chirp-settings > section > .btn {
   margin: 25px 0 25px 5px;
@@ -339,8 +348,13 @@ html.advanced .dlg > section {
   -moz-opacity: 0;
   opacity: 0;
   visibility: hidden;
-  background: -webkit-radial-gradient(circle, rgba(55, 55, 49, 0.5), rgba(0, 0, 0, 0.9));
-  background: -moz-radial-gradient(circle, rgba(55, 55, 49, 0.5), rgba(0, 0, 0, 0.9));
+  background-color: rgba(0, 0, 0, 0.9);
+  background-image: -webkit-gradient(radial, center center, 0, center center, 460, from(rgba(55, 55, 49, 0.5)), to(rgba(0, 0, 0, 0.9)));
+  background-image: -webkit-radial-gradient(circle, rgba(55, 55, 49, 0.5), rgba(0, 0, 0, 0.9));
+  background-image: -moz-radial-gradient(circle, rgba(55, 55, 49, 0.5), rgba(0, 0, 0, 0.9));
+  background-image: -o-radial-gradient(circle, rgba(55, 55, 49, 0.5), rgba(0, 0, 0, 0.9));
+  background-repeat: no-repeat;
+  background-color: transparent;
   -webkit-perspective: 300px;
   -moz-perspective: 300px;
   -ms-perspective: 300px;
@@ -388,6 +402,14 @@ html.advanced .dlg > section {
   zoom: 1;
   background: #242420;
   overflow: auto;
+  background-color: #292925;
+  background-image: -moz-linear-gradient(top, #32322c, #1c1c19);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#32322c), to(#1c1c19));
+  background-image: -webkit-linear-gradient(top, #32322c, #1c1c19);
+  background-image: -o-linear-gradient(top, #32322c, #1c1c19);
+  background-image: linear-gradient(to bottom, #32322c, #1c1c19);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff32322c', endColorstr='#ff1c1c19', GradientType=0);
 }
 .dlg .front:before,
 .dlg .front:after {
@@ -412,16 +434,19 @@ html.advanced .dlg > section {
   -ms-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   transform-style: preserve-3d;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
   -webkit-transform: rotatex(-180deg) translate3d(0, 20%, -100px) scale(0.2);
   -moz-transform: rotatex(-180deg) translate3d(0, 20%, -100px) scale(0.2);
   -ms-transform: rotatex(-180deg) translate3d(0, 20%, -100px) scale(0.2);
   -o-transform: rotatex(-180deg) translate3d(0, 20%, -100px) scale(0.2);
   transform: rotatex(-180deg) translate3d(0, 20%, -100px) scale(0.2);
-  -webkit-transition: -webkit-transform 0.5s ease-in-out;
-  -moz-transition: -webkit-transform 0.5s ease-in-out;
-  -ms-transition: -webkit-transform 0.5s ease-in-out;
-  -o-transition: -webkit-transform 0.5s ease-in-out;
-  transition: -webkit-transform 0.5s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   left: 50%;
   top: 50%;
   width: 600px;
@@ -441,11 +466,13 @@ html.advanced .dlg > section {
   right: 0;
   top: 0;
   bottom: 0;
-  color: rgba(255, 254, 229, 0.6);
+  color: rgba(255, 254, 229, 0.5);
   font-weight: 300;
   text-shadow: none;
-  overflow: hidden;
   background: #242420;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 .dlg > section p,
 .dlg > section pre {
@@ -497,16 +524,14 @@ html.how #how-to {
 }
 #windbaggery {
   right: 0;
-  background-color: rgba(255, 255, 255, 0);
-  background-repeat: repeat-x;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.4)), to(rgba(255, 255, 255, 0)));
+  background-color: rgba(255, 255, 255, 0.24);
   background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.4)), color-stop(100%, rgba(255, 255, 255, 0)));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0.4)), to(rgba(255, 255, 255, 0)));
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
   background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-  background-image: linear-gradient(top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0.4)', endColorstr='rgba(255, 255, 255, 0)', GradientType=0);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66ffffff', endColorstr='#00ffffff', GradientType=0);
   background-color: #fffee5;
   position: fixed;
   z-index: 2;
@@ -570,7 +595,7 @@ select {
   font-weight: 600;
   -webkit-appearance: none;
   -moz-appearance: none;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 254, 229, 0.15000000000000002);
   -webkit-box-shadow: 0 0 0 1px #1c1c19, 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 2px 3px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0 0 1px #1c1c19, 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 2px 3px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 0 1px #1c1c19, 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -582,6 +607,12 @@ select:focus {
   background-color: #fffee5;
   color: #373731;
 }
+::-webkit-input-placeholder {
+  color: rgba(255, 254, 229, 0.4);
+}
+input:-moz-placeholder {
+  color: rgba(255, 254, 229, 0.4);
+}
 .btn {
   padding: 0 20px;
   vertical-align: top;
@@ -590,16 +621,14 @@ select:focus {
   display: inline-block;
   overflow: hidden;
   font-weight: 600;
-  background-color: rgba(255, 255, 255, 0);
-  background-repeat: repeat-x;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0)));
+  background-color: rgba(255, 255, 255, 0.06);
   background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.1)), color-stop(100%, rgba(255, 255, 255, 0)));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0)));
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-  background-image: linear-gradient(top, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0.1)', endColorstr='rgba(255, 255, 255, 0)', GradientType=0);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1affffff', endColorstr='#00ffffff', GradientType=0);
   background-color: #e9366e;
   text-shadow: 0 -1px 0 #780d2f;
   -webkit-box-shadow: 0 0 0 1px #1c1c19, 0 2px 0 rgba(255, 255, 255, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.2);
@@ -622,16 +651,14 @@ select:focus {
 }
 .btn:active,
 .btn.active {
-  background-color: rgba(255, 255, 255, 0);
-  background-repeat: repeat-x;
-  background-image: -khtml-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.075)), to(rgba(255, 255, 255, 0)));
+  background-color: rgba(255, 255, 255, 0.045);
   background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0));
-  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0));
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.075)), color-stop(100%, rgba(255, 255, 255, 0)));
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255, 255, 255, 0.075)), to(rgba(255, 255, 255, 0)));
   background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0));
   background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0));
-  background-image: linear-gradient(top, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0));
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(255, 255, 255, 0.075)', endColorstr='rgba(255, 255, 255, 0)', GradientType=0);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0));
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#13ffffff', endColorstr='#00ffffff', GradientType=0);
   background-color: #780d2f;
   -webkit-box-shadow: 0 0 0 1px #1c1c19, 0 2px 0 rgba(255, 255, 255, 0.1), inset 0 2px 3px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 0 0 1px #1c1c19, 0 2px 0 rgba(255, 255, 255, 0.1), inset 0 2px 3px rgba(0, 0, 0, 0.3);

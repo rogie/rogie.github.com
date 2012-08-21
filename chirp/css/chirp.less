@@ -21,15 +21,18 @@ svg{
 }
 body {
    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-   font-weight: 200;
+   font-weight: 100;
    font-size: 20px;
    line-height: 1.4;
    padding-top: 141px;
    color: @dark;
+   -webkit-font-smoothing: antialiased;
+   text-rendering: optimizeLegibility;
 }
 pre > code {  
   display: block;
   word-wrap: break-word;
+  font-size: 0.8em;
 }
 code {
   font-family: Lucida Console,Monaco,Andale Mono,"MS Gothic",monospace;
@@ -40,6 +43,12 @@ code {
 a{
   color: desaturate(lighten(@red,5%),10%);
 	.transition(all .2s ease-in-out);
+	img{
+	  border: 0;
+	}
+}
+img{
+  -ms-interpolation-mode: bicubic;
 }
 h1,h2,h3, h4{
 	padding: 0;
@@ -168,8 +177,7 @@ ul.chirp{
   z-index: 3;
 	>section{
 	  background: @dark;
-		#gradient>.vertical(fadeout(@dark,15%),fadeout(darken(@dark,5%),10%));
-		background-color: transparent;
+		#gradient>.vertical(lighten(@dark,5%),darken(@dark,10%));
 		padding: 30px;
 		.transition(all .3s ease-in-out);
 		text-shadow: 0 1px 1px rgba(0,0,0,0.2);
@@ -179,6 +187,9 @@ ul.chirp{
 		.identity{
 		  float: left;
 		  text-align: left;
+		  p{
+		    color:fadeout(@yeller,60%);
+		  }
 		}
 		>.btn{
 		  margin: 25px 0 25px 5px;
@@ -281,6 +292,7 @@ html.advanced{
     >section{
       width: 800px;
       margin-left: -400px;
+      
     }  
   }
 }
@@ -297,8 +309,8 @@ html.advanced{
   overflow: hidden;
   .opacity(0);
   visibility: hidden;
-  background: -webkit-radial-gradient(circle, fadeout(@dark,50%), rgba(0,0,0,0.9));
-  background: -moz-radial-gradient(circle, fadeout(@dark,50%), rgba(0,0,0,0.9));
+  #gradient>.radial(fadeout(@dark,50%),rgba(0,0,0,0.9));
+  background-color: transparent;
   .perspective( 300px );
   
   .comment{
@@ -328,6 +340,7 @@ html.advanced{
     .clearfix;
     background: darken(@dark,7%);
     overflow: auto;
+    #gradient>.vertical(darken(@dark,2%),darken(@dark,10%));
   }
   >section{
     position: fixed;
@@ -335,8 +348,9 @@ html.advanced{
     .hw-accelerate;
     .backface-visibility( hidden );
     .transform-style( preserve-3d );
+    .border-radius;
     .transform( rotateX(-180deg) translate3d(0,20%,-100px) scale(0.2) );
-    @t: -webkit-transform 0.5s ease-in-out;
+    @t: all 0.3s ease-in-out;
     .transition(@t);
     left: 50%;
     top: 50%;
@@ -352,11 +366,11 @@ html.advanced{
       padding: 30px;
       position: absolute;
       left: 0; right:0; top:0; bottom:0;
-      color: fadeout(@yeller,40%);
+      color: fadeout(@yeller,50%);
       font-weight: 300;
       text-shadow: none;
-      overflow: hidden;
       background: darken(@dark,7%);
+      .border-radius;
     }
     p,pre{
       font-size: 0.9em;
@@ -448,7 +462,7 @@ input, textarea, select{
 	font-weight: 600;
 	-webkit-appearance:none;
 	-moz-appearance:none;
-	background: rgba(255,255,255,0.3);
+	background: fadeout(@yeller,85%);
 	@s:0 0 0 1px darken(@dark,10%), 0 2px 0 rgba(255,255,255,0.2), inset 0 2px 3px rgba(0,0,0,0.2);
 	.box-shadow(@s);
 	
@@ -458,6 +472,8 @@ input, textarea, select{
 		color: @dark;
 	}
 }
+::-webkit-input-placeholder  { color:fadeout(@yeller,60%); }
+input:-moz-placeholder { color:fadeout(@yeller,60%); }
 .btn{
 	padding: 0 20px;
 	vertical-align: top;
