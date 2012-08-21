@@ -222,6 +222,10 @@ ul.chirp li .meta a:hover {
   float: left;
   text-align: left;
 }
+#chirp-settings > section .identity h1 small {
+  font-size: 20px;
+}
+#chirp-settings > section .identity h1 small,
 #chirp-settings > section .identity p {
   color: rgba(255, 254, 229, 0.4);
 }
