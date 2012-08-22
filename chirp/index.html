@@ -22,10 +22,15 @@
 			function ermagherd(data){
 				if(data){
 					$('.chirp-tweets-empty').addClass('hide');
-					var dude = data[Math.floor(Math.random()*data.length)].user;
-					$('#bg')
-					  .attr('src', dude.profile_background_image_url + "?" + Math.random())
-					  .on('load', function(){$(this).removeClass('hide')});
+					try{
+  					var idx = Math.floor(Math.random()*data.length),
+  					  dude = data[idx].user;
+  					$('#bg')
+  					  .attr('src', dude.profile_background_image_url + "?" + Math.random())
+  					  .on('load', function(){$(this).removeClass('hide')});
+					}catch(e){
+					  
+					}
 				}
 			}
 			function meh(){
